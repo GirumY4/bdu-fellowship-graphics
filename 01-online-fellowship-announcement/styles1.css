@@ -1,0 +1,101 @@
+.poster--online {
+  color: var(--color-white);
+}
+
+.poster--online__photo {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background-image: url("../assets/images/fellowship-students.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.poster--online__content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: var(--space-7) var(--content-inset) var(--space-6);
+}
+
+.poster--online__header,
+.poster--online__join {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.poster--online__header .eyebrow {
+  padding-top: var(--space-2);
+  font-size: 18px;
+  color: var(--color-gold);
+  text-align: right;
+}
+
+.poster--online__hero {
+  max-width: 690px;
+  margin-top: var(--space-8);
+}
+
+.poster--online__eyebrow {
+  color: var(--color-gold);
+}
+
+.poster--online h1 {
+  margin: var(--space-3) 0 0;
+  font-size: 126px;
+  font-weight: 900;
+  letter-spacing: -0.075em;
+  line-height: 0.8;
+}
+
+.poster--online h1 span {
+  color: var(--color-gold);
+}
+
+.poster--online__amharic {
+  margin: var(--space-4) 0 0;
+  font-size: 47px;
+  line-height: 1.1;
+}
+
+.poster--online__intro {
+  max-width: 570px;
+  margin: var(--space-3) 0 0;
+  color: var(--color-primary-soft);
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.42;
+}
+
+.poster--online__details {
+  margin-top: auto;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-line);
+}
+
+.poster--online__join {
+  align-items: center;
+  margin-top: var(--space-4);
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.poster--online__join .section-title {
+  font-size: 24px;
+  color: var(--color-gold);
+}
+
+.poster--online__join p:not(.section-title) {
+  max-width: 290px;
+  margin: var(--space-2) 0 0;
+  color: var(--color-white);
+  font-size: 18px;
+  line-height: 1.35;
+}
+
+.poster--online .footer {
+  margin-top: var(--space-5);
+}

@@ -1,0 +1,78 @@
+.poster--verse {
+  color: var(--color-white);
+  background: var(--color-primary-deep);
+}
+
+.poster--verse__photo {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background-image: url("../assets/images/worship.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.poster--verse__content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: var(--space-7) var(--content-inset) var(--space-6);
+}
+
+.poster--verse__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.poster--verse__header .eyebrow {
+  max-width: 280px;
+  padding-top: var(--space-2);
+  font-size: 18px;
+  color: var(--color-gold);
+  text-align: right;
+}
+
+.poster--verse__hero {
+  position: relative;
+  margin-top: var(--space-7);
+}
+
+.poster--verse__cross {
+  position: absolute;
+  top: calc(var(--space-6) * -1);
+  right: var(--space-2);
+  margin: 0;
+  color: var(--color-white-ghost);
+  font-size: 220px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.poster--verse h1 {
+  position: relative;
+  margin: var(--space-3) 0 0;
+  color: var(--color-white);
+  font-size: 112px;
+  font-weight: 650;
+  letter-spacing: -0.075em;
+  line-height: 0.72;
+}
+
+.poster--verse__amharic {
+  position: relative;
+  margin: var(--space-4) 0 0;
+  color: var(--color-gold-soft);
+  font-size: 37px;
+  line-height: 1.15;
+}
+
+.poster--verse__card {
+  margin-top: auto;
+  padding: var(--space-4) 0;
+}
+
+.poster--verse .footer {
+  margin-top: var(--space-5);
+}

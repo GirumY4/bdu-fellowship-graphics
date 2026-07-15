@@ -1,0 +1,96 @@
+.poster--speaker {
+  color: var(--color-white);
+  background: var(--color-primary);
+}
+
+.poster--speaker__photo {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background-image: url("../assets/images/photo_2026-05-27_21-09-33.jpg");
+  background-position: 60% center;
+  background-size: cover;
+  filter: grayscale(0.28);
+}
+
+.poster--speaker__content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: var(--space-7) var(--content-inset) var(--space-6);
+}
+
+.poster--speaker__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.poster--speaker__header .eyebrow {
+  max-width: 260px;
+  padding-top: var(--space-2);
+  font-size: 18px;
+  color: var(--color-gold);
+  text-align: right;
+}
+
+.poster--speaker__hero {
+  margin-top: var(--space-5);
+}
+
+.poster--speaker h1 {
+  margin: var(--space-2) 0 0;
+  font-size: 102px;
+  font-weight: 900;
+  letter-spacing: -0.075em;
+  line-height: 0.8;
+}
+
+.poster--speaker h1 span {
+  color: var(--color-gold);
+}
+
+.poster--speaker__amharic {
+  margin: var(--space-3) 0 0;
+  color: var(--color-primary-soft);
+  font-size: 36px;
+  line-height: 1.12;
+}
+
+.poster--speaker .speaker-grid {
+  margin-top: var(--space-5);
+}
+
+.poster--speaker__topic {
+  margin-top: var(--space-4);
+}
+
+.poster--speaker__topic .eyebrow {
+  color: var(--color-gold);
+}
+
+.poster--speaker__topic-title {
+  margin: var(--space-2) 0 0;
+  color: var(--color-white);
+  font-size: 48px;
+  font-weight: 900;
+  letter-spacing: -0.055em;
+  line-height: 0.91;
+}
+
+.poster--speaker__topic-copy {
+  max-width: 570px;
+  margin: var(--space-2) 0 0;
+  color: var(--color-primary-soft);
+  font-size: 20px;
+  line-height: 1.35;
+}
+
+.poster--speaker__time {
+  width: max-content;
+  margin-top: var(--space-4);
+  padding: var(--space-2) 0;
+  border-top: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
+}
