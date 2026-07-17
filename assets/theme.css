@@ -1,4 +1,4 @@
-@import url("./typography.css?v=20260715-2");
+@import url("./typography.css?v=20260715-3");
 
 :root {
   /* Palette */
@@ -85,6 +85,7 @@ svg {
   height: var(--poster-height);
   overflow: hidden;
   background: var(--color-background);
+  -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
 }
 
@@ -98,17 +99,32 @@ svg {
 
 .poster::before {
   inset: 0;
-  opacity: 0.65;
+  opacity: 0.85;
   background:
-    radial-gradient(circle at 88% 12%, var(--color-motif-glow) 0%, transparent 24%),
-    repeating-linear-gradient(135deg, transparent 0 44px, var(--color-motif) 45px 46px, transparent 47px 90px);
-  mask-image: linear-gradient(180deg, var(--color-white) 0%, transparent 60%);
+    radial-gradient(
+      42% 32% at 12% 14%,
+      rgb(251 191 36 / 18%) 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      48% 38% at 88% 8%,
+      rgb(37 99 235 / 20%) 0%,
+      transparent 72%
+    ),
+    radial-gradient(
+      60% 50% at 78% 92%,
+      rgb(59 30 143 / 22%) 0%,
+      transparent 75%
+    ),
+    radial-gradient(120% 90% at 50% 42%, transparent 58%, rgb(0 0 0 / 22%) 100%);
 }
 
+/* Hairline inset frame for a "printed poster" feel. */
 .poster::after {
   inset: var(--space-4);
   border: 1px solid var(--color-line-soft);
   border-radius: var(--radius-md);
+  background: none;
 }
 
 .poster__content {
@@ -120,7 +136,7 @@ svg {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 116px;
+  width: 70px;
   min-height: 0;
   padding: 0;
   border: 0;
@@ -134,12 +150,23 @@ svg {
 }
 
 .logo-container img {
-  width: 116px;
+  width: 70px;
   height: auto;
   filter: brightness(0) invert(1) drop-shadow(0 2px 8px rgb(17 24 39 / 32%));
 }
 
-.eyebrow,
+/* Applied to small labels, tags, and top-level text like "EVERY FRIDAY" */
+.eyebrow {
+  font-family: var(--font-eyebrow);
+  margin: 0;
+  color: inherit;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  line-height: 1.1;
+  text-transform: uppercase;
+} /*newly added*/
+
 .section-title {
   font-family: var(--font-display);
   margin: 0;
@@ -217,39 +244,65 @@ svg {
 .meta-badge {
   display: inline-flex;
   align-items: center;
-  min-height: 42px;
+  min-height: 56px;
   gap: var(--space-2);
-  padding: 0;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-glass);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
   color: var(--color-white);
-  font-size: 19px;
-  font-weight: 800;
+  font-size: 22px;
+  font-weight: 850;
   letter-spacing: 0.08em;
-  line-height: 1.15;
+  line-height: 1.1;
+  box-shadow:
+    0 10px 30px rgb(0 0 0 / 18%),
+    inset 0 1px 0 rgb(255 255 255 / 14%);
 }
 
 .meta-badge--light {
-  border: 0;
-  background: transparent;
+  border: 1px solid var(--color-ink-line);
+  background: var(--color-white);
   color: var(--color-dark);
-  box-shadow: none;
+  box-shadow: var(--shadow-card);
 }
 
 .image-overlay {
   position: absolute;
   z-index: 1;
   inset: 0;
-  background: linear-gradient(180deg, rgb(17 24 39 / 42%) 0%, rgb(17 24 39 / 14%) 42%, rgb(17 24 39 / 78%) 100%);
+  background:
+    linear-gradient(
+      180deg,
+      rgb(17 24 39 / 30%) 0%,
+      rgb(17 24 39 / 8%) 38%,
+      rgb(17 24 39 / 62%) 100%
+    ),
+    radial-gradient(120% 80% at 50% 30%, transparent 50%, rgb(0 0 0 / 20%) 100%);
 }
 
 .image-overlay--primary {
-  background: linear-gradient(148deg, rgb(35 16 87 / 68%) 0%, rgb(35 16 87 / 18%) 48%, rgb(17 24 39 / 78%) 100%);
+  background:
+    linear-gradient(
+      168deg,
+      rgb(35 16 87 / 34%) 0%,
+      rgb(35 16 87 / 8%) 46%,
+      rgb(17 24 39 / 64%) 100%
+    ),
+    radial-gradient(
+      80% 60% at 84% 16%,
+      rgb(59 30 143 / 20%) 0%,
+      transparent 70%
+    ),
+    radial-gradient(120% 80% at 50% 28%, transparent 52%, rgb(0 0 0 / 18%) 100%);
 }
 
 .image-overlay--soft {
-  background: linear-gradient(180deg, rgb(17 24 39 / 18%) 0%, rgb(17 24 39 / 72%) 100%);
+  background:
+    linear-gradient(180deg, rgb(17 24 39 / 12%) 0%, rgb(17 24 39 / 58%) 100%),
+    radial-gradient(120% 80% at 50% 36%, transparent 54%, rgb(0 0 0 / 16%) 100%);
 }
 
 .speaker-grid {
@@ -276,7 +329,11 @@ svg {
   display: grid;
   min-height: 154px;
   place-items: center;
-  background: linear-gradient(150deg, var(--color-primary), var(--color-secondary));
+  background: linear-gradient(
+    150deg,
+    var(--color-primary),
+    var(--color-secondary)
+  );
 }
 
 .speaker-card__portrait img {
@@ -365,6 +422,22 @@ svg {
   box-shadow: none;
 }
 
+/* Unified glass QR card: QR + "Join on Telegram" + "Scan here" live as one body. */
+.qr-block--glass {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-4) var(--space-3) var(--space-3);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-glass);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  backdrop-filter: blur(16px) saturate(140%);
+  box-shadow:
+    0 18px 44px rgb(0 0 0 / 28%),
+    inset 0 1px 0 rgb(255 255 255 / 16%);
+}
+
 .qr-block img {
   width: 104px;
   height: 104px;
@@ -374,41 +447,63 @@ svg {
   object-fit: contain;
 }
 
+.qr-block--glass img {
+  width: 116px;
+  height: 116px;
+}
+
 .qr-block__copy {
   display: grid;
   gap: var(--space-1);
-  max-width: 190px;
+  max-width: 240px;
   padding-right: var(--space-2);
   color: var(--color-white);
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.25;
+}
+
+.qr-block--glass .qr-block__copy {
+  max-width: 260px;
 }
 
 .qr-block__copy strong {
   color: var(--color-gold);
-  font-size: 21px;
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+}
+
+.qr-block__copy span {
+  display: block;
+  margin-top: 2px;
+  color: rgb(255 255 255 / 82%);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
 }
 
 .footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-3);
+  gap: var(--space-4);
   margin-top: auto;
-  padding-top: var(--space-4);
+  padding-top: var(--space-5);
   border-top: 1px solid var(--color-line);
-  color: rgb(255 255 255 / 75%);
-  font-size: 17px;
-  font-weight: 700;
-  letter-spacing: 0.045em;
+  color: var(--color-white);
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
   line-height: 1.2;
+  text-transform: uppercase;
 }
 
 .footer__social {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-1);
+  gap: var(--space-2);
+  color: var(--color-gold);
 }
 
 @media (max-width: 1100px) {
@@ -426,26 +521,40 @@ svg {
 }
 
 @page {
-  size: 11.25in 14.0625in;
+  size: 1080px 1350px;
   margin: 0;
 }
 
 @media print {
   html,
   body {
-    width: var(--poster-width);
-    height: var(--poster-height);
+    width: 1080px;
+    height: 1350px;
     min-height: 0;
+    margin: 0;
+    padding: 0;
     overflow: hidden;
+    background: var(--color-background) !important;
   }
 
   body {
     display: block;
-    background: var(--color-background);
   }
 
+  /* The poster is the only thing that should print, on exactly one page. */
   .poster {
+    width: 1080px;
+    height: 1350px;
+    margin: 0;
+    transform: none !important;
+    break-inside: avoid;
     break-after: avoid;
+    page-break-inside: avoid;
     page-break-after: avoid;
+  }
+
+  /* Never print anything outside the poster container. */
+  body > :not(.poster) {
+    display: none !important;
   }
 }

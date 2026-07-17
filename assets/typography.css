@@ -1,7 +1,8 @@
 /* Local type library. Theme tokens reference these families; poster styles never do. */
 @font-face {
   font-family: "BDU Inter";
-  src: url("./fonts/latin-text-fonts/Professional-Sans-Serif/Inter/Inter-VariableFont_opsz,wght.ttf") format("truetype");
+  src: url("./fonts/latin-text-fonts/Professional-Sans-Serif/Inter/Inter-VariableFont_opsz,wght.ttf")
+    format("truetype");
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
@@ -9,7 +10,8 @@
 
 @font-face {
   font-family: "BDU Outfit";
-  src: url("./fonts/latin-text-fonts/Professional-Sans-Serif/Outfit/Outfit-VariableFont_wght.ttf") format("truetype");
+  src: url("./fonts/latin-text-fonts/Professional-Sans-Serif/Outfit/Outfit-VariableFont_wght.ttf")
+    format("truetype");
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
@@ -24,8 +26,27 @@
 }
 
 @font-face {
+  font-family: "BDU GeezFutura Bold";
+  src: url("./fonts/amharic-text-fonts/GeezFutura-Bold (4).ttf")
+    format("truetype");
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "BDU title Bold";
+  src: url("./fonts/amharic-text-fonts/GeezFutura-Bold (4).ttf")
+    format("truetype");
+  font-style: normal;
+  font-weight: 700 800;
+  font-display: swap;
+}
+
+@font-face {
   font-family: "BDU Caveat";
-  src: url("./fonts/latin-text-fonts/Handwrittenlike-Fonts/Caveat/Caveat-VariableFont_wght.ttf") format("truetype");
+  src: url("./fonts/latin-text-fonts/Handwrittenlike-Fonts/Caveat/Caveat-VariableFont_wght.ttf")
+    format("truetype");
   font-style: normal;
   font-weight: 400 700;
   font-display: swap;
@@ -33,16 +54,38 @@
 
 @font-face {
   font-family: "BDU Cormorant";
-  src: url("./fonts/latin-text-fonts/Elegant-Serif/Cormorant_Garamond/CormorantGaramond-VariableFont_wght.ttf") format("truetype");
+  src: url("./fonts/latin-text-fonts/Elegant-Serif/Cormorant_Garamond/CormorantGaramond-VariableFont_wght.ttf")
+    format("truetype");
   font-style: normal;
   font-weight: 300 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "BDU Cormorant Eyebrow";
+  src: url("./fonts/latin-text-fonts/Handwrittenlike-Fonts/Caveat/Caveat-VariableFont_wght.ttf")
+    format("truetype");
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+} /*newly added*/
+
+@font-face {
+  font-family: "BDU Footer Font";
+  src: url("./fonts/latin-text-fonts/Handwrittenlike-Fonts/Sacramento/Sacramento-Regular.ttf")
+    format("truetype");
+  font-style: normal;
+  font-weight: 400;
   font-display: swap;
 }
 
 :root {
   --font-sans: "BDU Inter", sans-serif;
   --font-display: "BDU Outfit", sans-serif;
-  --font-amharic: "BDU Addis Sans", sans-serif;
+  --font-amharic: "BDU title Bold", sans-serif;
   --font-handwritten: "BDU Caveat", cursive;
   --font-verse: "BDU Cormorant", serif;
+  --font-eyebrow: "BDU Cormorant Eyebrow", sans-serif; /*newly added*/
+  --font-footer: "BDU Footer Font", sans-serif;
+  --font-amharic-date: "BDU GeezFutura Bold", sans-serif;
 }

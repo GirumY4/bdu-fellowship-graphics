@@ -119,9 +119,7 @@
 }
 
 .poster--program__details .meta-badge {
-  min-height: 0;
-  padding-top: var(--space-2);
-  border-top: 1px solid var(--color-line);
+  justify-self: start;
 }
 
 .poster--program .footer {

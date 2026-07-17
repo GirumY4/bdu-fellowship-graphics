@@ -2,6 +2,10 @@
   color: var(--color-white);
 }
 
+.poster--online .logo-container img {
+  width: 70px;
+  filter: brightness(0) invert(1) drop-shadow(0 0 2px rgb(251 191 36 / 60%));
+}
 .poster--online__photo {
   position: absolute;
   z-index: 0;
@@ -18,8 +22,7 @@
   padding: var(--space-7) var(--content-inset) var(--space-6);
 }
 
-.poster--online__header,
-.poster--online__join {
+.poster--online__header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -35,7 +38,8 @@
 
 .poster--online__hero {
   max-width: 690px;
-  margin-top: var(--space-8);
+  margin-top: 80px;
+  position: relative;
 }
 
 .poster--online__eyebrow {
@@ -46,25 +50,77 @@
   margin: var(--space-3) 0 0;
   font-size: 126px;
   font-weight: 900;
-  letter-spacing: -0.075em;
+  letter-spacing: var(--tracking-tight, -0.075em); /* -0.075em; */
   line-height: 0.8;
+  position: relative;
 }
 
 .poster--online h1 span {
+  font-weight: 900;
   color: var(--color-gold);
 }
 
 .poster--online__amharic {
   margin: var(--space-4) 0 0;
-  font-size: 47px;
-  line-height: 1.1;
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 1.22;
+  letter-spacing: 0.005em;
+}
+
+/* Main intro container - using GeezFutura for the verse */
+.poster--online__intro.amharic {
+  font-family: var(--font-amharic-date); /* BDU GeezFutura Bold */
+  font-size: 28px; /* Same px size as before */
+  font-weight: 600;
+  line-height: 1.55; /* More spacing for longer text */
+  letter-spacing: 0.01em;
+  color: rgb(255 255 255 / 0.95);
+  max-width: 630px; /* Wider for the longer verse 580px */
+  margin: var(--space-3) 0 0;
+  text-wrap: balance;
+  text-align: left;
+}
+
+/* Style for the quoted phrase "ደስ አያሰኝም" */
+.poster--online__intro.amharic span:not(.highlight-gold):not(.verse-reference) {
+  font-style: italic;
+  color: rgb(255 255 255 / 0.88);
+}
+
+/* Gold highlighted text - "በወጣትነትህ ጊዜ" */
+.poster--online__intro .highlight-gold {
+  color: var(--color-gold);
+  font-size: 34px; /* Larger than surrounding text */
+  font-weight: 800; /* Bolder */
+  font-family: var(
+    --font-amharic-date
+  ); /* Use Outfit for contrast - or try Amharic font */
+  display: inline-block;
+  margin: 0 2px;
+  line-height: 1.2;
+  text-shadow: 0 2px 8px rgb(251 191 36 / 40%); /* Subtle gold glow */
+}
+
+/* Verse reference on new line */
+.poster--online__intro .verse-reference {
+  display: block; /* Forces new line */
+  margin-top: var(--space-1); /* Space above reference */
+  padding-top: 4px;
+  font-family: var(--font-verse); /* Use Cormorant for scripture reference */
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--color-gold);
+  line-height: 0.3;
+  letter-spacing: 0.08em;
+  text-align: left; /* Align reference to right */
 }
 
 .poster--online__intro {
-  max-width: 570px;
+  max-width: 480px;
   margin: var(--space-3) 0 0;
   color: var(--color-primary-soft);
-  font-size: 24px;
+  font-size: 23px;
   font-weight: 500;
   line-height: 1.42;
 }
@@ -76,26 +132,156 @@
 }
 
 .poster--online__join {
+  display: flex;
   align-items: center;
-  margin-top: var(--space-4);
+  justify-content: space-between;
+  gap: var(--space-5);
+  margin-top: var(--space-5);
   padding: 0;
   border: 0;
   background: transparent;
 }
 
+.poster--online__join-copy {
+  max-width: 300px;
+}
+
 .poster--online__join .section-title {
-  font-size: 24px;
+  font-size: 32px;
+  font-weight: 900;
   color: var(--color-gold);
 }
 
 .poster--online__join p:not(.section-title) {
-  max-width: 290px;
+  max-width: 300px;
   margin: var(--space-2) 0 0;
-  color: var(--color-white);
-  font-size: 18px;
-  line-height: 1.35;
+  color: rgb(255 255 255 / 86%);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.poster--online .poster--online__qr {
+  flex-shrink: 0;
 }
 
 .poster--online .footer {
   margin-top: var(--space-5);
+  font-family: var(--font-footer);
+  font-size: 26px; /* Slightly larger for readability */
+  font-weight: 800;
+  letter-spacing: 0.08em; /* Reduce from 0.14em for script font */
+}
+
+.poster--online .footer__social {
+  font-family: var(--font-footer);
+}
+
+.poster--online__header .header-text-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-1);
+}
+
+.poster--online__header .eyebrow-amharic {
+  font-family: var(--font-amharic-date);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--color-gold);
+  line-height: 1.2;
+  text-transform: none;
+}
+
+/* Amharic text in meta badges */
+.meta-badge--amharic .amharic-text {
+  font-family: var(--font-amharic-date);
+  font-size: 24px; /* Slightly smaller than Latin text for visual balance */
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/* Adjust the meta-badge width to accommodate Amharic text */
+.meta-badge--amharic {
+  min-width: 160px; /* Slightly wider for Amharic characters */
+  justify-content: center;
+  padding: var(--space-3) var(--space-5);
+}
+
+.poster--online__eyebrow.handwritten {
+  font-family: var(--font-handwritten);
+  font-size: 48px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--color-gold);
+  text-transform: none; /* Remove uppercase */
+  margin-bottom: -14px; /* var(--space-3); */
+  display: block;
+  position: absolute;
+  top: 5px; /* Adjusted to position above the header */
+  left: var(--content-inset); /* Align with content */
+  z-index: 4;
+  transform: rotate(-12deg); /* Slight rotation for handwritten feel */
+}
+.poster--online .image-overlay--primary {
+  background:
+    linear-gradient(
+      180deg,
+      rgb(17 24 39 / 65%) 0%,
+      /* Much darker top */ rgb(17 24 39 / 55%) 35%,
+      /* Dark middle */ rgb(17 24 39 / 75%) 100% /* Darker bottom */
+    ),
+    radial-gradient(
+      100% 80% at 50% 40%,
+      rgb(35 16 87 / 40%) 0%,
+      /* Stronger purple tint */ transparent 60%
+    );
+  /* radial-gradient(120% 80% at 50% 28%, transparent 52%, rgb(0 0 0 / 12%) 100%); */
+}
+.poster--online__details {
+  margin-top: auto;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-line);
+  position: relative;
+}
+
+.poster--online__details::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: var(--content-inset);
+  width: 120px;
+  height: 3px;
+  background: var(--color-gold);
+  border-radius: 2px;
+}
+.poster--online .qr-block--glass {
+  border: 1.5px solid rgb(251 191 36 / 40%); /* Subtle gold border */
+  background: rgb(17 24 39 / 45%); /* Slightly more opaque */
+}
+
+.pointer-icon {
+  padding-top: 4px;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+}
+
+/* QR block text - increase slightly */
+.qr-block__copy strong {
+  color: var(--color-gold);
+  font-size: 26px; /* Increased from 24px */
+  font-weight: 900;
+  letter-spacing: 0.02em;
+}
+
+.qr-block__copy span {
+  display: block;
+  margin-top: 2px;
+  color: rgb(255 255 255 / 85%);
+  font-size: 17px; /* Increased from 15px */
+  font-weight: 700;
+  letter-spacing: 0.04em;
 }
