@@ -352,3 +352,164 @@
     0 12px 30px rgb(0 0 0 / 32%),
     inset 0 1px 0 rgb(255 255 255 / 14%);
 }
+/* ===== Time badge: force ONE straight line (date · time · telegram handle) ===== */
+.poster--speaker__time {
+  display: inline-flex; /* explicit flex row */
+  flex-wrap: nowrap; /* never break onto a second line */
+  align-items: center; /* vertically centre every child = straight line */
+  white-space: nowrap; /* no line breaks inside any text run */
+  width: max-content; /* pill grows to fit the single line */
+  max-width: none; /* remove any hidden width cap that caused the wrap */
+}
+
+/* The Amharic date/time must stay on one line */
+.poster--speaker__time .amharic-text {
+  white-space: nowrap;
+}
+
+/* Keep the calendar icon from shrinking */
+.poster--speaker__time > img {
+  flex: 0 0 auto;
+}
+
+/* Telegram + handle as one inline group, centred on the date's line */
+.poster--speaker__time .badge-social {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
+.poster--speaker__time .badge-social img {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+}
+
+/* Latin handle -> Latin font, same colour/line as the date */
+.poster--speaker__time .badge-social__handle {
+  font-family: var(--font-sans);
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--color-gold); /* matches the date text on the same line */
+}
+/* =========================================================
+   SPEAKER POSTER — v3 card restyle (scoped to .poster--speaker)
+   - Ordinal label line removed (see HTML change)
+   - Ministry/role line promoted to the top gold-eyebrow slot
+   - Card made glassy with a thin gold border (mirrors Poster 01 QR card)
+   Append AFTER all previous styles3.css rules. Touches nothing global.
+   ========================================================= */
+
+/* Card shell: transparent fill + thin gold frame (parity with .qr-block--glass) */
+.poster--speaker .speaker-card {
+  overflow: hidden;
+  border: 1.5px solid rgb(251 191 36 / 40%); /* thin gold border = Poster 01 QR */
+  border-radius: var(--radius-sm);
+  background: transparent; /* was a solid dark gradient -> now see-through */
+  box-shadow: 0 18px 40px rgb(0 0 0 / 38%);
+}
+
+/* Faint white separator between photo and glass body (keeps the only gold on the outer frame) */
+.poster--speaker .speaker-card__portrait {
+  border-bottom: 1px solid rgb(255 255 255 / 12%);
+}
+
+/* Glass body panel: translucent + blurred, echoing the QR glass card */
+.poster--speaker .speaker-card__body {
+  padding: var(--space-3) var(--space-3) var(--space-4);
+  background: rgb(17 24 39 / 50%); /* "a little transparent" (was 84%) */
+  -webkit-backdrop-filter: blur(10px) saturate(130%);
+  backdrop-filter: blur(10px) saturate(130%);
+}
+
+/* Role now sits at the TOP as the gold eyebrow (the removed label's former slot) */
+.poster--speaker .speaker-card__role {
+  margin: 0 0 6px; /* gap before the name below it */
+  font-family: var(--font-amharic-date);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.25;
+  color: var(--color-gold);
+  text-shadow: 0 1px 6px rgb(0 0 0 / 45%);
+}
+
+/* Name stays the large white line, now directly beneath the gold role */
+.poster--speaker .speaker-card__name {
+  margin-top: 0;
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.16;
+  letter-spacing: 0.01em;
+  color: var(--color-white);
+  text-shadow: 0 2px 8px rgb(0 0 0 / 55%);
+}
+/* =========================================================
+   SPEAKER POSTER — v4 (scoped to .poster--speaker)
+   (1) Fill the 4:5 canvas so the empty bottom band disappears
+   (2) Fix the placeholder icon (stop the cover rule stretching it)
+   (3) Enlarge small / low-contrast text
+   Append AFTER all previous styles3.css rules. Touches nothing global.
+   ========================================================= */
+
+/* (2) Placeholder = small centred ghost, NOT a stretched cover image.
+       Specificity (0,3,1) beats the cover rule (0,2,1), so the photo
+       rule still applies to real .jpg portraits (they have no class). */
+.poster--speaker .speaker-card__portrait img.speaker-portrait-placeholder {
+  position: static; /* let the portrait's grid re-centre it */
+  inset: auto;
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.42; /* faint silhouette, not a solid block */
+}
+
+/* (1) Fill the canvas. The portrait height is your MAIN fill dial. */
+.poster--speaker__hero {
+  margin-top: 48px;
+} /* was 32 */
+.poster--speaker .speaker-grid {
+  margin-top: 44px;
+} /* was 32 */
+.poster--speaker .speaker-card__portrait {
+  min-height: 320px;
+} /* was 232 -> raise in +20px steps if a gap remains */
+.poster--speaker .speaker-card__body {
+  padding: 18px 18px 22px;
+}
+.poster--speaker__topic {
+  margin-top: 40px;
+} /* was 24 */
+.poster--speaker__time {
+  margin-top: 44px;
+} /* was 32 */
+
+/* (3) Bump small / low-contrast text (also adds vertical height) */
+.poster--speaker__amharic {
+  font-size: 50px;
+} /* hero Amharic subtitle (was 44) */
+.poster--speaker__topic-title {
+  font-size: 56px;
+  line-height: 1.12;
+} /* was 48 */
+.poster--speaker .eyebrow-amharic {
+  font-size: 26px;
+} /* topic kicker (header label stays 28 via its more specific rule) */
+.poster--speaker .speaker-card__role {
+  /* gold ministry tag */
+  font-size: 19px; /* was 16/17 */
+  text-shadow: 0 1px 6px rgb(0 0 0 / 55%); /* keep gold legible over bright photo edges */
+}
+.poster--speaker .speaker-card__name {
+  font-size: 31px;
+} /* white name (was 28) */
+.poster--speaker .meta-badge--amharic .amharic-text {
+  font-size: 22px;
+} /* time badge date (was 20) */
+.poster--speaker__time .badge-social__handle {
+  font-size: 21px;
+} /* telegram handle (was 19) */

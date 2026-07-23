@@ -1,0 +1,277 @@
+/* =========================================================
+   POSTER 05 — COUNTDOWN / "TIME REMAINING" REMINDER
+   All rules scoped to .poster--countdown.
+   Touches neither theme.css / typography.css nor any other poster.
+   Composition = centred (reference-driven); header & footer match 01/03.
+   Palette = locked brand (deep purple + gold + white).
+   ========================================================= */
+
+.poster--countdown {
+  color: var(--color-white);
+}
+
+/* ----- Background: brand gradient (purple, with a cool top-left glow
+        that nods to the reference's cyan, but using in-system tokens) ----- */
+.poster--countdown__bg {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background:
+    radial-gradient(
+      60% 50% at 12% 6%,
+      rgb(37 99 235 / 34%) 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      52% 42% at 90% 94%,
+      rgb(251 191 36 / 14%) 0%,
+      transparent 72%
+    ),
+    linear-gradient(
+      160deg,
+      #2a1470 0%,
+      var(--color-primary) 46%,
+      var(--color-primary-deep) 100%
+    );
+}
+
+/* ----- Geometric motif texture (inline SVG, no external asset needed).
+        If it ever fails to render, the gradient above still looks complete.
+        To use your own tribal pattern file instead, replace background-image
+        with: url("../assets/images/patterns/tribal-motif.svg");  ----- */
+.poster--countdown__pattern {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  opacity: 0.11; /* was 0.1 — motif now clearly present */
+  background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'><path d='M32 2 L62 32 L32 62 L2 32 Z' fill='%23ffffff' fill-opacity='0.05' stroke='%23ffffff' stroke-width='2.4' stroke-opacity='0.9'/><path d='M32 18 L46 32 L32 46 L18 32 Z' fill='none' stroke='%23ffffff' stroke-width='1.6' stroke-opacity='0.7'/><path d='M2 2 L18 18 M62 2 L46 18 M2 62 L18 46 M62 62 L46 46' fill='none' stroke='%23ffffff' stroke-width='1.6' stroke-opacity='0.6'/></svg>");
+  background-size: 128px 128px; /* was 96px — larger diamonds */
+  background-position: center;
+}
+
+.poster--countdown__pattern {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  opacity: 0.11;
+  background: #ffffff; /* diamond tint — overridden per variant below */
+  /* The SVG is now a stencil (mask); its alpha shapes the tint colour. */
+  -webkit-mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'><path d='M32 2 L62 32 L32 62 L2 32 Z' fill='%23ffffff' fill-opacity='0.05' stroke='%23ffffff' stroke-width='2.4' stroke-opacity='0.9'/><path d='M32 18 L46 32 L32 46 L18 32 Z' fill='none' stroke='%23ffffff' stroke-width='1.6' stroke-opacity='0.7'/><path d='M2 2 L18 18 M62 2 L46 18 M2 62 L18 46 M62 62 L46 46' fill='none' stroke='%23ffffff' stroke-width='1.6' stroke-opacity='0.6'/></svg>");
+  mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'><path d='M32 2 L62 32 L32 62 L2 32 Z' fill='%23ffffff' fill-opacity='0.05' stroke='%23ffffff' stroke-width='2.4' stroke-opacity='0.9'/><path d='M32 18 L46 32 L32 46 L18 32 Z' fill='none' stroke='%23ffffff' stroke-width='1.6' stroke-opacity='0.7'/><path d='M2 2 L18 18 M62 2 L46 18 M2 62 L18 46 M62 62 L46 46' fill='none' stroke='%23ffffff' stroke-width='1.6' stroke-opacity='0.6'/></svg>");
+  -webkit-mask-size: 128px 128px;
+  mask-size: 128px 128px;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-repeat: repeat;
+  mask-repeat: repeat;
+}
+
+/* ----- Edge vignette for text contrast over the pattern ----- */
+.poster--countdown__vignette {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: radial-gradient(
+    120% 92% at 50% 42%,
+    transparent 52%,
+    rgb(0 0 0 / 38%) 100%
+  );
+}
+
+/* ----- Floating clock motif (decorative) ----- */
+.poster--countdown__clock {
+  position: absolute;
+  z-index: 1;
+  top: 365px;
+  left: 50%;
+  width: 120px;
+  height: 120px;
+  transform: translateX(-50%);
+  filter: brightness(0) invert(1) blur(2px);
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* ----- Content column: centred middle, full-width header & footer ----- */
+.poster--countdown__content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-7) var(--content-inset) var(--space-6);
+}
+
+/* ----- Header (same pattern as 01/03): Amharic left, logo right ----- */
+.poster--countdown__header {
+  display: flex;
+  align-self: stretch;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.poster--countdown__header .header-text-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-1);
+}
+
+.poster--countdown__header .eyebrow-amharic {
+  font-family: var(--font-amharic-date);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--color-gold);
+  line-height: 1.2;
+  text-transform: none;
+}
+
+/* Logo: same gold-glow treatment as 01/03 */
+.poster--countdown .logo-container img {
+  width: 70px;
+  filter: brightness(0) invert(1) drop-shadow(0 0 2px rgb(251 191 36 / 60%));
+}
+
+/* ----- Hero (centred) ----- */
+.poster--countdown__hero {
+  position: relative;
+  width: 100%;
+  max-width: 920px;
+  margin-top: auto;
+}
+
+/* Handwritten urgency flourish overlapping the headline (01/03 style) */
+.poster--countdown__flourish {
+  position: absolute;
+  z-index: 2;
+  top: -6px;
+  left: 50%;
+  margin: 0;
+  font-family: var(--font-handwritten);
+  font-size: 58px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--color-gold);
+  text-transform: none;
+  transform: translateX(-50%) rotate(-8deg);
+  text-shadow: 0 2px 12px rgb(0 0 0 / 50%);
+}
+
+/* Big time headline (Outfit), white + gold accent line */
+.poster--countdown h1 {
+  position: relative;
+  z-index: 1;
+  margin: var(--space-3) 0 0;
+  font-family: var(--font-display);
+  font-size: 152px;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.82;
+  text-shadow: 0 6px 22px rgb(0 0 0 / 45%);
+}
+
+.poster--countdown h1 span {
+  color: var(--color-gold);
+}
+
+/* Amharic "remains" line */
+.poster--countdown__amharic {
+  margin: var(--space-4) 0 0;
+  font-size: 72px;
+  font-weight: 800;
+  line-height: 1.18;
+  letter-spacing: 0.01em;
+  color: var(--color-white);
+  text-shadow: 0 4px 16px rgb(0 0 0 / 50%);
+}
+
+/* ----- Host block (centred): circular portrait + WITH / name ----- */
+.poster--countdown__host {
+  display: flex;
+  align-self: center;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: 56px;
+}
+
+.poster--countdown__host-photo {
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--color-white);
+  /* thin gold ring = brand tie-in around the white circle */
+  box-shadow:
+    0 0 0 3px rgb(251 191 36 / 70%),
+    0 14px 34px rgb(0 0 0 / 40%);
+}
+
+.poster--countdown__host-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 22%;
+}
+
+.poster--countdown__host-meta {
+  display: grid;
+  gap: 2px;
+  text-align: left;
+}
+
+.poster--countdown__with {
+  font-family: var(--font-display);
+  font-size: 26px; /* was 22 */
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: var(--color-gold);
+  text-transform: uppercase;
+  text-shadow: 0 2px 8px rgb(0 0 0 / 40%);
+}
+
+.poster--countdown__name {
+  font-family: var(--font-sans);
+  font-size: 36px; /* was 30 */
+  font-weight: 800; /* was 700 */
+  line-height: 1.1;
+  color: var(--color-white);
+  text-shadow: 0 2px 8px rgb(0 0 0 / 45%);
+}
+
+/* ----- Day / time chips (centred), reusing global glass meta-badge ----- */
+.poster--countdown__when {
+  align-self: center;
+  margin-top: 48px;
+  margin-bottom: auto; /* bottom half of the free space (centres the cluster) */
+}
+
+.poster--countdown .meta-row {
+  justify-content: center;
+}
+
+.poster--countdown .meta-badge--amharic .amharic-text {
+  font-family: var(--font-amharic-date);
+  font-size: 30px; /* was 22 */
+  font-weight: 800; /* was 700 */
+  letter-spacing: 0.02em;
+}
+
+/* ----- Footer: same script-font component as 01/03 ----- */
+.poster--countdown .footer {
+  align-self: stretch;
+  width: 100%;
+  margin-top: 0; /* auto; */
+  font-family: var(--font-footer);
+  font-size: 32px; /* was 26 — larger for mobile */
+  font-weight: 700; /* maps to the real Kalam-Bold file */
+  letter-spacing: 0.04em; /* was 0.08 — tighter so the handwriting reads as one bold line */
+  text-shadow: 0 2px 10px rgb(0 0 0 / 45%);
+}
+
+.poster--countdown .footer__social {
+  font-family: var(--font-footer);
+  font-weight: 700;
+}

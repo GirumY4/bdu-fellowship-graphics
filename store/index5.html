@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="BDU Fellowship live program countdown reminder template"
+    />
+    <title>BDU Fellowship — Countdown Reminder</title>
+    <link rel="stylesheet" href="../assets/theme.css?v=20260715-3" />
+    <link rel="stylesheet" href="./styles5.css?v=20260723-a" />
+  </head>
+  <body>
+    <main
+      class="poster poster--countdown"
+      aria-label="Live program countdown reminder"
+    >
+      <!-- Background layers (no photo: patterned brand gradient) -->
+      <div class="poster--countdown__bg" aria-hidden="true"></div>
+      <div class="poster--countdown__pattern" aria-hidden="true"></div>
+      <div class="poster--countdown__vignette" aria-hidden="true"></div>
+
+      <!-- Floating clock motif (decorative, echoes the reference) -->
+      <img
+        class="poster--countdown__clock"
+        src="../assets/icons/material-symbols/schedule.svg"
+        alt=""
+        aria-hidden="true"
+      />
+
+      <div class="poster__content poster--countdown__content">
+        <!-- Header: identical pattern to Posters 01 & 03 (Amharic left, logo right) -->
+        <header class="poster--countdown__header">
+          <div class="header-text-group">
+            <!-- SWAPPABLE: reminder eyebrow -->
+            <p class="eyebrow-amharic amharic">ማስታወሻ</p>
+          </div>
+          <div class="logo-container">
+            <img
+              src="../assets/logo/vlm-logo.svg"
+              alt="VLM BDU Fellowship logo"
+            />
+          </div>
+        </header>
+
+        <!-- Hero (centred): flourish + time headline + Amharic "remains" line -->
+        <section
+          class="poster--countdown__hero"
+          aria-labelledby="countdown-title"
+        >
+          <!-- SWAPPABLE: urgency flourish (overlaps the headline) -->
+          <p class="poster--countdown__flourish handwritten">live tonight</p>
+
+          <h1 id="countdown-title">
+            <!-- SWAPPABLE: countdown value / words -->
+            1 HOUR<br /><span>LEFT</span>
+          </h1>
+
+          <!-- SWAPPABLE: Amharic "time remains" line -->
+          <p class="poster--countdown__amharic amharic">፩ ሰዓት ይቀራል</p>
+        </section>
+
+        <!-- Host (centred): circular portrait + WITH / name -->
+        <section class="poster--countdown__host" aria-label="Program host">
+          <div class="poster--countdown__host-photo">
+            <!-- SWAPPABLE: replace with the host photo (transparent PNG cutout
+                 reproduces the reference's white-background look exactly) -->
+            <img
+              src="../assets/images/program-speakers/speaker3.jpg"
+              alt="Program host portrait"
+            />
+          </div>
+          <div class="poster--countdown__host-meta">
+            <span class="poster--countdown__with">WITH</span>
+            <!-- SWAPPABLE: host name -->
+            <span class="poster--countdown__name">Sami</span>
+          </div>
+        </section>
+
+        <!-- Day / time chips (centred), reusing the global glass meta-badge -->
+        <section class="poster--countdown__when" aria-label="When">
+          <div class="meta-row">
+            <div class="meta-badge meta-badge--amharic">
+              <img src="../assets/icons/material-symbols/event.svg" alt="" />
+              <!-- SWAPPABLE: day -->
+              <span class="amharic-text">ቅዳሜ</span>
+            </div>
+            <div class="meta-badge meta-badge--amharic">
+              <img src="../assets/icons/material-symbols/schedule.svg" alt="" />
+              <!-- SWAPPABLE: time -->
+              <span class="amharic-text">ማታ 2:00</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Footer: identical component to Posters 01 & 03 -->
+        <footer class="footer">
+          <span><strong>BDU FELLOWSHIP</strong></span>
+          <span class="footer__social">
+            <img src="../assets/icons/telegram.svg" alt="" />
+            <strong>@bdu_fellowship</strong>
+          </span>
+        </footer>
+      </div>
+    </main>
+  </body>
+</html>

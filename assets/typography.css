@@ -72,10 +72,28 @@
 
 @font-face {
   font-family: "BDU Footer Font";
-  src: url("./fonts/latin-text-fonts/Handwrittenlike-Fonts/Sacramento/Sacramento-Regular.ttf")
+  src: url("./fonts/latin-text-fonts/Handwrittenlike-Fonts/Kalam/Kalam-Regular.ttf")
     format("truetype");
   font-style: normal;
   font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "BDU Footer Font";
+  src: url("./fonts/latin-text-fonts/Handwrittenlike-Fonts/Kalam/Kalam-Bold.ttf")
+    format("truetype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "BDU Footer Font";
+  src: url("./fonts/latin-text-fonts/Handwrittenlike-Fonts/Kalam/Kalam-Bold.ttf")
+    format("truetype");
+  font-style: normal;
+  font-weight: 800;
   font-display: swap;
 }
 
