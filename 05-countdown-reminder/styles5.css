@@ -275,3 +275,60 @@
   font-family: var(--font-footer);
   font-weight: 700;
 }
+/* =========================================================
+   COUNTDOWN VARIANTS — urgency escalation via diamond tint.
+   Usage: add  poster--countdown--30  or  poster--countdown--15
+   to the <main> class list (see HTML note below).
+   Base / 1-hour = calm white lattice (defined above).
+   Opacity stays low so brand purple + gold are never overpowered.
+   ========================================================= */
+
+/* 30-minute variant — caution orange */
+.poster--countdown--30 .poster--countdown__pattern {
+  background: #fb923c; /* orange diamonds (distinct from the gold headline) */
+  opacity: 0.16; /* a touch more present than the 1h white */
+}
+.poster--countdown--30 .poster--countdown__bg {
+  background:
+    radial-gradient(
+      60% 50% at 12% 6%,
+      rgb(251 146 60 / 28%) 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      52% 42% at 90% 94%,
+      rgb(251 191 36 / 14%) 0%,
+      transparent 72%
+    ),
+    linear-gradient(
+      160deg,
+      #2a1470 0%,
+      var(--color-primary) 46%,
+      var(--color-primary-deep) 100%
+    );
+}
+
+/* 15-minute variant — urgent red */
+.poster--countdown--15 .poster--countdown__pattern {
+  background: #f87171; /* red diamonds */
+  opacity: 0.2; /* strongest of the three, still subtle */
+}
+.poster--countdown--15 .poster--countdown__bg {
+  background:
+    radial-gradient(
+      60% 50% at 12% 6%,
+      rgb(239 68 68 / 28%) 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      52% 42% at 90% 94%,
+      rgb(251 191 36 / 12%) 0%,
+      transparent 72%
+    ),
+    linear-gradient(
+      160deg,
+      #2a1470 0%,
+      var(--color-primary) 46%,
+      var(--color-primary-deep) 100%
+    );
+}
