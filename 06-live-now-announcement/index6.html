@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="BDU Fellowship live-now program announcement template"
+    />
+    <title>BDU Fellowship — Live Now</title>
+    <link rel="stylesheet" href="../assets/theme.css?v=20260723-b" />
+    <link rel="stylesheet" href="./styles6.css?v=20260724-a" />
+  </head>
+  <body>
+    <main
+      class="poster poster--live"
+      aria-label="Live now program announcement"
+    >
+      <!-- Background layers (no photo: patterned brand gradient + on-air halo) -->
+      <div class="poster--live__bg" aria-hidden="true"></div>
+      <div class="poster--live__pattern" aria-hidden="true"></div>
+      <div class="poster--live__vignette" aria-hidden="true"></div>
+
+      <div class="poster__content poster--live__content">
+        <!-- Header: locked pattern (Amharic left + live dot, logo right) -->
+        <header class="poster--live__header">
+          <div class="header-text-group">
+            <!-- SWAPPABLE: live eyebrow (the pulsing dot is added by CSS) -->
+            <p class="eyebrow-amharic amharic">ቀጥታ</p>
+          </div>
+          <div class="logo-container">
+            <img
+              src="../assets/logo/vlm-logo.svg"
+              alt="VLM BDU Fellowship logo"
+            />
+          </div>
+        </header>
+
+        <!-- Hero (centred, Amharic-only): giant word + ringing doodles + clock -->
+        <section class="poster--live__hero" aria-labelledby="live-title">
+          <h1 class="poster--live__hero-word" id="live-title">
+            <!-- Decorative ringing alarm-clock, anchored to the word (reference cue) -->
+            <img
+              class="poster--live__clock"
+              src="../assets/icons/lucide/alarm-clock.svg"
+              alt=""
+              aria-hidden="true"
+            />
+            <!-- SWAPPABLE: the "NOW" word (Amharic only in the hero) -->
+            አሁን
+          </h1>
+
+          <!-- SWAPPABLE: program type line (word / worship / prayer) -->
+          <p class="poster--live__topic amharic">የአምልኮ ጊዜ</p>
+        </section>
+
+        <!-- Host (centred): circular portrait + WITH / name (countdown design) -->
+        <section class="poster--live__host" aria-label="Program host">
+          <div class="poster--live__host-photo">
+            <!-- SWAPPABLE: host photo -->
+            <img
+              src="../assets/images/program-speakers/speaker1.jpg"
+              alt="Program host portrait"
+            />
+          </div>
+          <div class="poster--live__host-meta">
+            <span class="poster--live__with">WITH</span>
+            <!-- SWAPPABLE: host name -->
+            <span class="poster--live__name">Saron (realy)</span>
+          </div>
+        </section>
+
+        <!-- Footer: locked script-font component (brand left / handle right) -->
+        <footer class="footer">
+          <span><strong>BDU FELLOWSHIP</strong></span>
+          <span class="footer__social">
+            <img src="../assets/icons/telegram.svg" alt="" />
+            <strong>@bdu_fellowship</strong>
+          </span>
+        </footer>
+      </div>
+    </main>
+  </body>
+</html>
