@@ -1,0 +1,280 @@
+/* =========================================================
+   POSTER 07 — "ONLINE FELLOWSHIP · TONIGHT"
+   All rules scoped to .poster--tonight.
+   Touches neither theme.css / typography.css nor any other poster.
+   No photos, no Amharic. Oversized skewed all-white hero + gold
+   "Tonight" sticker. New background: diagonal two-tone + halftone.
+   Palette = locked brand (purple + gold + white; one blue chip accent).
+   ========================================================= */
+
+.poster--tonight {
+  color: var(--color-white);
+}
+
+/* ----- Background: diagonal two-tone plane + thin gold seam +
+        centre spotlight (lifts the headline) + cool/warm corner glows ----- */
+.poster--tonight__bg {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background:
+    
+    /* faint centre spotlight behind the headline */
+    radial-gradient(
+      42% 32% at 50% 42%,
+      rgb(255 255 255 / 9%) 0%,
+      transparent 72%
+    ),
+    /* cool blue glow top-right (reference nod) */
+    radial-gradient(60% 55% at 88% 8%, rgb(37 99 235 / 30%) 0%, transparent 70%),
+    /* warm gold glow bottom-left */
+    radial-gradient(
+        55% 50% at 10% 94%,
+        rgb(251 191 36 / 16%) 0%,
+        transparent 72%
+      ),
+    /* diagonal two-tone base (both halves dark => white text reads everywhere) */
+    linear-gradient(
+        125deg,
+        var(--color-primary-deep) 0%,
+        var(--color-primary-deep) 30%,
+        var(--color-primary) 62%,
+        #2a1470 100%
+      );
+}
+
+/* ----- Halftone dot-grid (NEW motif — distinct from the 05/06 diamonds) ----- */
+.poster--tonight__pattern {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  opacity: 0.07;
+  background-image: radial-gradient(
+    rgb(255 255 255 / 0.6) 1.6px,
+    transparent 1.7px
+  );
+  background-size: 28px 28px;
+  background-position: center;
+}
+
+/* ----- Edge vignette for text contrast ----- */
+.poster--tonight__vignette {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: radial-gradient(
+    120% 92% at 50% 42%,
+    transparent 52%,
+    rgb(0 0 0 / 40%) 100%
+  );
+}
+
+/* ----- Content column: centred middle, full-width header & footer ----- */
+.poster--tonight__content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-7) var(--content-inset) var(--space-6);
+}
+
+/* ----- Header (locked pattern): Latin live eyebrow + dot left, logo right ----- */
+.poster--tonight__header {
+  display: flex;
+  align-self: stretch;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.poster--tonight__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: var(--color-gold);
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+/* Pulsing "on-air" dot before the eyebrow (emerald = active, not a warning red) */
+.poster--tonight__eyebrow::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--color-emerald);
+  box-shadow: 0 0 0 0 rgb(34 197 94 / 60%);
+  animation: tonightPulse 1.8s infinite;
+}
+
+@keyframes tonightPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgb(34 197 94 / 60%);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgb(34 197 94 / 0%);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgb(34 197 94 / 0%);
+  }
+}
+
+/* Logo: same gold-glow treatment as 01/03/05/06 */
+.poster--tonight .logo-container img {
+  width: 70px;
+  filter: brightness(0) invert(1) drop-shadow(0 0 2px rgb(251 191 36 / 60%));
+}
+
+/* ----- Hero (centred). margin-top:auto = top half of the free space ----- */
+.poster--tonight__hero {
+  position: relative;
+  width: 100%;
+  margin-top: auto;
+}
+
+/* Oversized, skewed, ALL-WHITE headline (the intentional inversion) */
+.poster--tonight__title {
+  margin: 0;
+  font-family: var(--font-display); /* see Edit 5 (font swap) */
+  font-size: 150px; /* dial 138–160px; see notes */
+  font-weight: 900;
+  letter-spacing: -0.05em; /* -0.05em; */
+  line-height: 0.82;
+  color: var(--color-white); /* white fill */
+  -webkit-text-stroke: 4px var(--color-gold); /* gold border per glyph */
+  paint-order: stroke fill; /* stroke sits OUTSIDE the white fill */
+  text-transform: uppercase;
+  transform: skewX(-7deg);
+  text-shadow: 0 8px 24px rgb(0 0 0 / 50%); /* softened so the gold edge stays crisp */
+}
+
+/* Gold "Tonight" sticker, centred on the seam between the two lines */
+.poster--tonight__sticker {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* box stays upright (like the reference) */
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 24px; /* tighter => the word dominates the box */
+  border-radius: 12px;
+  /* A compact replica of the poster's own background (diagonal purple + gold glow) */
+  background:
+    radial-gradient(
+      80% 130% at 82% 0%,
+      rgb(251 191 36 / 24%) 0%,
+      transparent 72%
+    ),
+    linear-gradient(
+      125deg,
+      var(--color-primary) 0%,
+      var(--color-primary-deep) 100%
+    );
+  border: 2px solid var(--color-gold); /* gold frame so it still reads as a stamp */
+  box-shadow:
+    0 14px 32px rgb(0 0 0 / 45%),
+    inset 0 1px 0 rgb(255 255 255 / 18%);
+}
+
+/* Only the TEXT is slanted (skew), so the gold box remains a clean rectangle */
+.poster--tonight__sticker-text {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 66px; /* was 42 — now large relative to its frame */
+  font-weight: 900;
+  letter-spacing: 0.01em;
+  color: var(
+    --color-white
+  ); /* was dark; white reads on the purple stamp (ref 19) */
+  text-transform: none;
+  transform: skewX(-9deg);
+  text-shadow: 0 3px 10px rgb(0 0 0 / 45%);
+}
+
+/* ----- Today specifier (icon-less): plain day + solid time pill.
+        margin-bottom:auto = bottom half of the free space (centres cluster) ----- */
+.poster--tonight__when {
+  display: flex;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  margin-top: 64px;
+  margin-bottom: auto;
+}
+
+.poster--tonight__day {
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: var(--color-white);
+  text-transform: uppercase;
+  text-shadow: 0 2px 10px rgb(0 0 0 / 45%);
+}
+
+.poster--tonight__time {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: var(--color-white);
+  text-transform: uppercase;
+  padding: 12px 28px;
+  border-radius: var(--radius-pill);
+  background: var(--color-secondary); /* reference-faithful blue pill */
+  box-shadow: 0 10px 26px rgb(0 0 0 / 30%);
+}
+
+/* ----- Footer: locked script-font component (margin-top 0 so the cluster
+        stays centred and the footer pins to the bottom) ----- */
+.poster--tonight .footer {
+  align-self: stretch;
+  width: 100%;
+  margin-top: 0;
+  font-family: var(--font-footer);
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 10px rgb(0 0 0 / 45%);
+}
+
+.poster--tonight .footer__social {
+  font-family: var(--font-footer);
+  font-weight: 700;
+}
+/* ----- Big background shapes (rings) — distinct from the dot/diamond motif.
+       Drawn on the existing .poster--tonight__bg via a pseudo-element,
+       so no HTML change is needed. Low opacity => ambient depth, not noise. ----- */
+.poster--tonight__bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    /* bold double gold ring, off-centre top-right (bleeds off two edges) */
+   /* radial-gradient(
+      circle at 78% 20%,
+      transparent 0 300px,
+      rgb(251 191 36 / 0.2) 300px 304px,
+      transparent 304px 356px,
+      rgb(251 191 36 / 0.2) 356px 360px,
+      transparent 360px
+    ), */
+    /* concentric white broadcast waves, bottom-left */ repeating-radial-gradient(
+    circle at 14% 86%,
+    transparent 0 44px,
+    rgb(255 255 255 / 0.06) 44px 47px,
+    transparent 47px 92px
+  );
+}

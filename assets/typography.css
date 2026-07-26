@@ -97,6 +97,15 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "BDU Poster";
+  src: url("./fonts/latin-text-fonts/Handwrittenlike-Fonts/Patrick_Hand/PatrickHand-Regular.ttf")
+    format("truetype");
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+}
+
 :root {
   --font-sans: "BDU Inter", sans-serif;
   --font-display: "BDU Outfit", sans-serif;
@@ -106,4 +115,5 @@
   --font-eyebrow: "BDU Cormorant Eyebrow", sans-serif; /*newly added*/
   --font-footer: "BDU Footer Font", sans-serif;
   --font-amharic-date: "BDU GeezFutura Bold", sans-serif;
+  --font-poster: "BDU Poster", sans-serif;
 }
