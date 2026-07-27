@@ -44,6 +44,24 @@
 }
 
 @font-face {
+  font-family: "BDU Bela Hidase";
+  src: url("./fonts/amharic-text-fonts/GeezFutura-Bold\ \(4\).ttf")
+    format("truetype");
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "BDU ref";
+  src: url("./fonts/amharic-text-fonts/SurGraphics\ Bold\ \(4\).ttf")
+    format("truetype");
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
   font-family: "BDU Caveat";
   src: url("./fonts/latin-text-fonts/Handwrittenlike-Fonts/Caveat/Caveat-VariableFont_wght.ttf")
     format("truetype");
@@ -110,10 +128,12 @@
   --font-sans: "BDU Inter", sans-serif;
   --font-display: "BDU Outfit", sans-serif;
   --font-amharic: "BDU title Bold", sans-serif;
+  --font-amharic-hero: "BDU Bela Hidase", sans-serif;
   --font-handwritten: "BDU Caveat", cursive;
   --font-verse: "BDU Cormorant", serif;
   --font-eyebrow: "BDU Cormorant Eyebrow", sans-serif; /*newly added*/
   --font-footer: "BDU Footer Font", sans-serif;
   --font-amharic-date: "BDU GeezFutura Bold", sans-serif;
+  --font-amharic-date1: "BDU ref", sans-serif;
   --font-poster: "BDU Poster", sans-serif;
 }

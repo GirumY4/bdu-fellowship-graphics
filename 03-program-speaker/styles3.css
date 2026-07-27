@@ -133,8 +133,8 @@
 
 .poster--speaker__eyebrow.handwritten {
   font-family: var(--font-handwritten);
-  font-size: 44px;
-  font-weight: 700;
+  font-size: 48px;
+  font-weight: 800;
   letter-spacing: 0.02em;
   color: var(--color-gold);
   text-transform: none;
@@ -490,7 +490,7 @@
 
 /* (3) Bump small / low-contrast text (also adds vertical height) */
 .poster--speaker__amharic {
-  font-size: 50px;
+  font-size: 55px;
 } /* hero Amharic subtitle (was 44) */
 .poster--speaker__topic-title {
   font-size: 56px;
@@ -501,15 +501,119 @@
 } /* topic kicker (header label stays 28 via its more specific rule) */
 .poster--speaker .speaker-card__role {
   /* gold ministry tag */
-  font-size: 19px; /* was 16/17 */
+  font-size: 21px; /* was 16/17 */
   text-shadow: 0 1px 6px rgb(0 0 0 / 55%); /* keep gold legible over bright photo edges */
 }
 .poster--speaker .speaker-card__name {
-  font-size: 31px;
+  font-size: 35px;
 } /* white name (was 28) */
 .poster--speaker .meta-badge--amharic .amharic-text {
-  font-size: 22px;
+  font-size: 24px;
 } /* time badge date (was 20) */
 .poster--speaker__time .badge-social__handle {
-  font-size: 21px;
+  font-size: 23px;
 } /* telegram handle (was 19) */
+
+/* =========================================================
+   SPEAKER POSTER — v5 (scoped to .poster--speaker)
+   (1) Centre the main content (hero + cards + time badge)
+   (2) Speaker photos become Poster-06-style ringed circles
+   (3) Vertical balance for the now-shorter centred cluster
+   Append AFTER all previous styles3.css rules. Touches nothing global.
+   Header (Amharic left / logo right) and footer (brand / handle)
+   are deliberately left full-width as brand chrome.
+   ========================================================= */
+
+/* (1a) Centre the hero block (flourish + headline + Amharic line) */
+.poster--speaker__hero {
+  margin-top: auto; /* also drives vertical centring (see 3) */
+  text-align: center;
+}
+/* Re-centre the handwritten flourish now that the hero is centred */
+.poster--speaker__eyebrow.handwritten {
+  margin-left: 0; /* drop the old left offset so it sits dead-centre */
+}
+/* Safeguard the Latin headline face regardless of theme.css state */
+.poster--speaker h1 {
+  font-family: var(--font-display);
+}
+
+/* (1b) Centre the time badge on its row */
+.poster--speaker__time {
+  align-self: center;
+  margin-bottom: auto; /* also drives vertical centring (see 3) */
+}
+
+/* (2) Card = frameless centred stack (no rectangle, no glass panel) */
+.poster--speaker .speaker-card {
+  text-align: center; /* centres the role + name beneath the circle */
+  border: 0; /* remove the rectangular gold frame */
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible; /* let the ring's drop-shadow breathe */
+}
+
+/* (2) The photo as a Poster-06 ringed circle */
+.poster--speaker .speaker-card__portrait {
+  align-self: center; /* keep the fixed-width circle from stretching */
+  width: 250px; /* circle diameter (dial 170–210px) */
+  height: 250px;
+  min-height: 0; /* override the old 320px rectangle height */
+  position: relative; /* anchor the cover photo */
+  display: grid;
+  place-items: center; /* centre the placeholder ghost */
+  margin: 0;
+  border: 0; /* remove the old bottom hairline */
+  border-radius: 50%;
+  overflow: hidden; /* clip the photo to the circle */
+  /* Purple fill shows only behind the empty placeholder; real JPGs cover it */
+  background: linear-gradient(
+    160deg,
+    var(--color-primary-deep),
+    var(--color-primary)
+  );
+  /* Gold ring + depth, identical to Poster 06's host circle */
+  box-shadow:
+    0 0 0 3px rgb(251 191 36 / 70%),
+    0 14px 34px rgb(0 0 0 / 40%);
+}
+/* Real photos fill the circle, biased toward the face (unchanged behaviour,
+   restated here so it reads correctly against the new circular frame) */
+.poster--speaker .speaker-card__portrait img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 22%;
+  filter: none;
+  opacity: 1;
+}
+/* Empty placeholder = centred white ghost inside the purple circle */
+.poster--speaker .speaker-card__portrait img.speaker-portrait-placeholder {
+  position: static;
+  inset: auto;
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.5;
+}
+
+/* (2) Body = transparent, centred text directly on the poster (no glass slab) */
+.poster--speaker .speaker-card__body {
+  align-self: stretch; /* span the column so the centred text aligns to the circle */
+  width: 100%;
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  padding: var(--space-3) var(--space-2) 0;
+}
+
+/* (3) Pin the footer so the centred cluster floats between header and footer
+       (same auto-margin pattern as Posters 05/06/07; prevents a bottom void
+       now that the topic block is gone and the cards are shorter). */
+.poster--speaker .footer {
+  margin-top: 0;
+}

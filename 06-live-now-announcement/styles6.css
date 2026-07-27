@@ -142,7 +142,7 @@
 }
 
 /* The "NOW" word: inline-block so the ringing doodles + clock anchor to it */
-.poster--live__hero-word {
+.poster--live .poster--live__hero-word {
   position: relative;
   display: inline-block;
   margin: 0;

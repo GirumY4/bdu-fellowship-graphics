@@ -1,4 +1,4 @@
-@import url("./typography.css?v=20260715-3");
+@import url("./typography.css?v=20260726-a");
 
 :root {
   /* Palette */
@@ -180,13 +180,6 @@ svg {
 
 .section-title {
   font-size: 28px;
-}
-
-.poster h1,
-.poster h2,
-.button,
-.meta-badge {
-  font-family: var(--font-display);
 }
 
 .amharic {

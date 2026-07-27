@@ -1,0 +1,318 @@
+/* =========================================================
+   POSTER 08 — VLOG VERSE CARD (square-ish canvas)
+   All visual rules scoped to .poster--vlog.
+   Touches no other poster's CSS. The canvas size, @page and the
+   print block at the bottom are document-local overrides of the
+   global 1080x1350 contract (this poster is intentionally square).
+   Palette = locked brand, warmed to suit the sunrise artwork.
+   ========================================================= */
+
+/* ----- Local canvas override (square-but-not-perfect-square).
+       Higher specificity (.poster.poster--vlog) beats global .poster. ----- */
+.poster.poster--vlog {
+  width: 1080px;
+  height: 1000px; /* change to 1080px for a perfect square */
+}
+
+/* Neutralise the global portrait-tuned motif glows (they would muddy the
+   warm artwork); we supply our own warm ambient layers below. */
+.poster--vlog::before {
+  background: none;
+  opacity: 0;
+}
+
+/* Recolour the global hairline frame to a faint warm gold edge. */
+.poster--vlog::after {
+  border-color: rgb(251 191 36 / 16%);
+}
+
+/* ----- Background artwork (the cross / sunrise image) ----- */
+.poster--vlog__photo {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  /* SWAPPABLE: set this to your real file name + extension */
+  background-image: url("../assets/images/vlog-cross-sunrise.jpg");
+  background-position: 32% center; /* dial 20%–50% to frame the cross vs the sun */
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* ----- Scrims: darken the RIGHT (text) side + top/bottom vignette,
+       while leaving the cross and the sun luminous on the left. ----- */
+.poster--vlog__scrim {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background:
+    /* (1) Unifying warm veil + right darkening.
+       A LONG, EASED ramp whose COLOUR travels warm-amber-brown -> near-black.
+       Warm mid-tones (never neutral black) keep the bright sun from greying
+       where the veil is semi-transparent, and laying that warm tint across the
+       artwork's own vertical edge knits the two halves into one field => no seam. */
+    linear-gradient(
+      90deg,
+      rgb(48 26 8 / 0%) 0%,
+      rgb(48 26 8 / 8%) 14%,
+      rgb(44 24 7 / 20%) 26%,
+      rgb(38 20 5 / 40%) 38%,
+      rgb(28 14 3 / 66%) 50%,
+      rgb(18 9 2 / 86%) 64%,
+      rgb(11 5 1 / 95%) 80%,
+      rgb(7 3 1 / 98%) 100%
+    ),
+    /* (2) Curved right-edge depth, anchored off the right side. Its falloff is
+       an ARC, not a vertical line, so it cannot create a straight seam; warm-dark
+       so it never desaturates the artwork. This is what truly dissolves the join. */
+    radial-gradient(
+        95% 120% at 100% 50%,
+        rgb(20 10 2 / 52%) 0%,
+        rgb(14 7 2 / 20%) 42%,
+        rgb(8 3 1 / 0%) 80%
+      ),
+    /* (3) Gentle top/bottom framing only; the left sky stays bright. */
+    linear-gradient(
+        180deg,
+        rgb(10 4 1 / 30%) 0%,
+        rgb(10 4 1 / 0%) 16%,
+        rgb(10 4 1 / 0%) 62%,
+        rgb(10 4 1 / 72%) 100%
+      );
+}
+
+/* ----- Living sun bloom (pulses slowly over the artwork's sun) ----- */
+.poster--vlog__sun {
+  position: absolute;
+  z-index: 2;
+  top: -90px; /* warm amber glow, top-right corner (breathes) */
+  right: -90px;
+  width: 480px;
+  height: 480px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgb(255 176 64 / 26%) 0%,
+    rgb(255 150 40 / 12%) 42%,
+    transparent 72%
+  );
+  pointer-events: none;
+  animation: vlogSunPulse 6.5s ease-in-out infinite;
+}
+
+/* ----- Top-right light beam (echoes reference 20's spotlight) ----- */
+.poster--vlog__beam {
+  position: absolute;
+  z-index: 2;
+  bottom: -120px; /* warm amber glow, bottom-right corner (static) */
+  right: -60px;
+  width: 460px;
+  height: 460px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgb(251 160 40 / 16%) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+/* ----- Drifting light motes, masked to the dark right field only ----- */
+.poster--vlog__motes {
+  display: none; /* removed: read as noise; the corner glows carry the life */
+}
+
+/* ----- Content column: text biased toward the top (like ref 20);
+       the logo is absolutely pinned to the foot. ----- */
+.poster--vlog__content {
+  display: flex;
+  flex: 1; /* FILL the canvas (was missing => the box collapsed) */
+  width: 100%;
+  flex-direction: column;
+  justify-content: center; /* vertically centre the text column */
+  padding: 84px var(--content-inset) 96px;
+}
+
+/* ----- Right-hand text column ----- */
+.poster--vlog__text {
+  width: min(620px, 62%);
+  margin-left: auto; /* pushes the column to the right */
+  animation: vlogRiseIn 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+/* ----- Hero: embossed gold Amharic (gradient fill + deep-gold rim + glow) ----- */
+.poster--vlog .poster--vlog__title {
+  margin: 0;
+  font-family: var(--font-amharic-hero, "BDU GeezFutura Bold", sans-serif);
+  font-size: 78px; /* large, 800 confident, fills the right column */
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: 0.005em;
+  text-wrap: balance;
+  color: var(--color-gold); /* SOLID gold — no clip, no stroke, no ghosting */
+  /* Letterpress depth + soft halo, achieved with shadows only (Amharic-safe) */
+  text-shadow:
+    0 1px 0 rgb(146 84 0 / 65%),
+    /* crisp dark-gold bottom edge = subtle carve */ 0 2px 6px rgb(0 0 0 / 45%),
+    0 12px 34px rgb(0 0 0 / 55%);
+}
+/* ----- Verse body: clean readable Amharic, white ----- */
+.poster--vlog__verse {
+  margin: 28px 0 0;
+  max-width: 750px;
+  font-family: var(--font-amharic-date1);
+  font-size: 27px; /* was 23 */
+  font-weight: 600; /* was 500 — reads cleanly at a glance */
+  line-height: 1.6; /* was 1.72 — tighter, less sprawl */
+  letter-spacing: 0.005em;
+  color: rgb(255 255 255 / 96%);
+  text-wrap: balance;
+  text-shadow: 0 2px 12px rgb(0 0 0 / 75%);
+}
+
+.poster--vlog__ref {
+  position: relative;
+  display: inline-block;
+  margin: 38px 0 0;
+  padding: 16px 0 0; /* headroom for the gold rule above */
+  border: 0; /* NO box, NO radius => not a button */
+  border-radius: 0;
+  background: transparent;
+  font-family: var(--font-amharic-date1);
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: 0.02em; /* gentle, Amharic-appropriate tracking */
+  color: var(--color-white);
+  text-shadow: 0 1px 8px rgb(0 0 0 / 60%);
+}
+
+/* Short gold rule above the reference = editorial caption, left-aligned
+   to the same rail as the hero and the verse. */
+.poster--vlog__ref::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 52px;
+  height: 2px;
+  background: var(--color-gold);
+}
+
+/* ----- Centred white logo at the foot ----- */
+.poster--vlog__brand {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  bottom: 44px;
+  transform: translateX(-50%);
+}
+
+.poster--vlog__brand .logo-container img {
+  width: 72px; /* was 66 */
+  filter: brightness(0) invert(1) drop-shadow(0 0 4px rgb(251 191 36 / 60%)); /* brand glow, matches the set */
+  transition:
+    filter 0.5s ease,
+    transform 0.5s ease;
+}
+
+/* ----- Hover micro-interactions (live preview only; harmless in export) ----- */
+.poster--vlog:hover .poster--vlog__title {
+  filter: drop-shadow(0 6px 26px rgb(251 191 36 / 70%));
+}
+.poster--vlog:hover .poster--vlog__sun {
+  opacity: 1;
+}
+.poster--vlog:hover .poster--vlog__brand .logo-container img {
+  transform: translateY(-2px);
+}
+
+/* ----- Ambient / entrance motion ----- */
+@keyframes vlogSunPulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translate(-50%, -50%) scale(1.06);
+  }
+}
+@keyframes vlogHeroBreathe {
+  0%,
+  100% {
+    filter: drop-shadow(0 3px 10px rgb(251 191 36 / 30%));
+  }
+  50% {
+    filter: drop-shadow(0 5px 22px rgb(251 191 36 / 55%));
+  }
+}
+@keyframes vlogMoteDrift {
+  from {
+    background-position:
+      0 0,
+      60px 120px;
+  }
+  to {
+    background-position:
+      0 -240px,
+      60px -120px;
+  }
+}
+@keyframes vlogRiseIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* =========================================================
+   DOCUMENT-LOCAL EXPORT OVERRIDES (square canvas for THIS file).
+   These intentionally override the imported theme.css values
+   (1080x1350) for this document only; other posters keep 1350.
+   ========================================================= */
+@page {
+  size: 1080px 1000px; /* match the canvas above (1080px for a square) */
+  margin: 0;
+}
+
+@media (max-width: 1100px) {
+  /* Fix the mobile-preview bottom gap that the global rule computes from 1350. */
+  .poster.poster--vlog {
+    margin-bottom: calc(1000px * (100vw / 1080 - 1));
+  }
+}
+
+@media print {
+  html,
+  body {
+    width: 1080px;
+    height: 1000px;
+  }
+  .poster.poster--vlog {
+    width: 1080px;
+    height: 1000px;
+  }
+}
+/* ----- Minimalism pass: let the artwork carry the richness.
+       The sun bloom rendered as a grey smudge on the dark panel and the
+       beam/motes added noise; removing them yields a clean, composed card.
+       The cross/sunrise illustration already supplies depth and light. ----- */
+.poster--vlog__sun,
+.poster--vlog__beam,
+.poster--vlog__motes {
+  display: none;
+}
+/* Definitively remove the on-top ambient layers. The grey disc at mid-canvas
+   is the old .poster--vlog__sun (a near-white radial) painted at z-index 2,
+   ABOVE the scrim (z-index 1) — so the scrim can never hide it; it must be
+   switched off here. With it gone, the warm scrim absorbs the artwork's own
+   sun into a seamless glow instead of leaving a half-grey blob. */
+.poster--vlog .poster--vlog__sun,
+.poster--vlog .poster--vlog__beam,
+.poster--vlog .poster--vlog__motes {
+  display: none !important;
+}
