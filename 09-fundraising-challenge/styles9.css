@@ -1,0 +1,741 @@
+/* =========================================================
+   POSTER 09 — FUNDRAISING CHALLENGE (1080 x 1250)
+   All visual rules scoped to .poster--fund.
+   Touches no other poster's CSS. Canvas / @page / print at the
+   bottom are document-local overrides of the global 1080x1350.
+   Palette = locked brand (purple + gold + white), gold-heavy for
+   the donation mechanics. White info card = the fundraising format.
+   ========================================================= */
+
+/* ----- Tinted icon system (CSS mask => exact gold/purple/white) ----- */
+.ic {
+  display: inline-block;
+  flex: 0 0 auto;
+  background-color: currentColor;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+}
+.tint-gold {
+  color: var(--color-gold);
+}
+.tint-purple {
+  color: var(--color-primary-deep);
+}
+.tint-white {
+  color: #ffffff;
+}
+.ic-campaign {
+  width: 18px;
+  height: 18px;
+  -webkit-mask-image: url("../assets/icons/material-symbols/campaign.svg");
+  mask-image: url("../assets/icons/material-symbols/campaign.svg");
+}
+.ic-sound {
+  width: 26px;
+  height: 26px;
+  -webkit-mask-image: url("../assets/icons/material-symbols/mic.svg");
+  mask-image: url("../assets/icons/material-symbols/mic.svg");
+}
+.ic-heart {
+  width: 100%;
+  height: 100%;
+  -webkit-mask-image: url("../assets/icons/material-symbols/favorite.svg");
+  mask-image: url("../assets/icons/material-symbols/favorite.svg");
+}
+
+/* ----- Local canvas override (1080 x 1250) ----- */
+.poster.poster--fund {
+  width: 1080px;
+  height: 1250px;
+}
+
+/* Neutralise the global portrait-tuned motif glows; supply our own layers. */
+.poster--fund::before {
+  background: none;
+  opacity: 0;
+}
+/* Recolour the global hairline frame to a faint warm gold edge. */
+.poster--fund::after {
+  border-color: rgb(251 191 36 / 16%);
+}
+
+/* ----- Background: gradient + top spotlight + gold glow behind the ask
+    /*   + a faint in-palette cool corner (brand ambient parity) ----- */
+.poster--fund__bg {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background:
+    radial-gradient(
+      46% 30% at 50% 15%,
+      rgb(255 255 255 / 9%) 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      62% 42% at 50% 88%,
+      rgb(251 191 36 / 18%) 0%,
+      transparent 72%
+    ),
+    radial-gradient(
+      50% 40% at 90% 5%,
+      rgb(37 99 235 / 16%) 0%,
+      transparent 70%
+    ),
+    linear-gradient(
+      165deg,
+      #2a1470 0%,
+      var(--color-primary) 50%,
+      var(--color-primary-deep) 100%
+    );
+}
+
+/* .poster--fund__bg {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background:
+    radial-gradient(
+      46% 30% at 50% 15%,
+      rgb(255 255 255 / 10%) 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      62% 42% at 50% 88%,
+      rgb(251 191 36 / 16%) 0%,
+      transparent 72%
+    ),
+    radial-gradient(
+      50% 40% at 90% 5%,
+      rgb(37 99 235 / 14%) 0%,
+      transparent 70%
+    ),
+    
+    linear-gradient(
+        165deg,
+        rgb(42 20 112 / 80%) 0%,
+        rgb(59 30 143 / 74%) 50%,
+        rgb(20 9 3 / 90%) 100%
+      );
+} */
+
+/* ----- Faint diamond motif (same family as Posters 05/06) ----- */
+.poster--fund__motif {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  opacity: 0.08;
+  background: #ffffff;
+  -webkit-mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'><path d='M32 2 L62 32 L32 62 L2 32 Z' fill='none' stroke='%23ffffff' stroke-width='2.2' stroke-opacity='0.9'/><path d='M32 18 L46 32 L32 46 L18 32 Z' fill='none' stroke='%23ffffff' stroke-width='1.4' stroke-opacity='0.6'/></svg>");
+  mask-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'><path d='M32 2 L62 32 L32 62 L2 32 Z' fill='none' stroke='%23ffffff' stroke-width='2.2' stroke-opacity='0.9'/><path d='M32 18 L46 32 L32 46 L18 32 Z' fill='none' stroke='%23ffffff' stroke-width='1.4' stroke-opacity='0.6'/></svg>");
+  -webkit-mask-size: 120px 120px;
+  mask-size: 120px 120px;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-repeat: repeat;
+  mask-repeat: repeat;
+}
+
+/* ----- Big faint gold heart watermark (ref-25 heart language) ----- */
+.poster--fund__heart {
+  position: absolute;
+  z-index: 1;
+  top: 120px;
+  right: -120px;
+  width: 540px;
+  height: 540px;
+  opacity: 0.06;
+  pointer-events: none;
+  animation: fundHeartBreathe 7s ease-in-out infinite;
+}
+
+/* ----- Edge vignette for contrast ----- */
+.poster--fund__vignette {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: radial-gradient(
+    120% 92% at 50% 44%,
+    transparent 56%,
+    rgb(0 0 0 / 34%) 100%
+  );
+}
+
+/* ----- Content column: centred; footer pinned to the foot ----- */
+.poster--fund__content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 52px 64px 44px;
+}
+
+/* ----- Top bar: campaign tag left, glowing logo right ----- */
+.poster--fund__topbar {
+  display: flex;
+  align-self: stretch;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+.poster--fund__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: var(--color-gold);
+  text-transform: uppercase;
+}
+.poster--fund .logo-container img {
+  width: 66px;
+  filter: brightness(0) invert(1) drop-shadow(0 0 2px rgb(251 191 36 / 60%));
+}
+
+/* ----- Hero (centred) ----- */
+.poster--fund__hero {
+  margin-top: 30px;
+  animation: fundRise 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) 0.05s both;
+}
+.poster--fund__eyebrow {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  color: rgb(255 255 255 / 88%);
+  text-transform: uppercase;
+}
+.poster--fund__title {
+  margin: 12px 0 0;
+  font-family: var(--font-display);
+  font-size: 86px;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.82;
+  color: var(--color-white);
+  text-transform: uppercase;
+  text-shadow: 0 8px 26px rgb(0 0 0 / 45%);
+}
+.poster--fund__title span {
+  color: var(--color-gold);
+}
+.poster--fund__subhead {
+  margin: 14px 0 0;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: rgb(255 255 255 / 92%);
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+.poster--fund__swoosh {
+  width: 240px;
+  height: 26px;
+  margin-top: 6px;
+  color: var(--color-gold);
+  filter: drop-shadow(0 2px 6px rgb(0 0 0 / 35%));
+}
+
+/* ----- White info card (the fundraising-format panel) ----- */
+.fund-card {
+  width: 65%;
+  margin-top: 26px;
+  overflow: hidden;
+  border-radius: 22px;
+  background: #fffdf8;
+  color: var(--color-primary-deep);
+  text-align: left;
+  box-shadow: 0 24px 60px rgb(0 0 0 / 42%);
+  animation: fundRise 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) 0.2s both;
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+}
+.fund-card__tab {
+  padding: 14px 26px;
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* Featured sound-system row (gold-tinted, left bar) */
+.fund-featured {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 22px;
+  background: var(--color-gold-soft);
+  border-left: 5px solid var(--color-gold);
+}
+.fund-featured__ic-wrap {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  flex: 0 0 auto;
+  place-items: center;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 8%);
+}
+.fund-featured__copy {
+  display: grid;
+  gap: 2px;
+}
+.fund-featured__copy strong {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  color: var(--color-primary-deep);
+}
+.fund-featured__copy span {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.3;
+  color: rgb(35 16 87 / 72%);
+}
+
+/* Programs checklist */
+.fund-programs {
+  display: grid;
+  gap: 11px;
+  margin: 0;
+  padding: 16px 22px 20px;
+  list-style: none;
+}
+.fund-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+  color: var(--color-primary-deep);
+  text-transform: uppercase;
+}
+/* Pure-CSS check bullet (gold disc + deep-purple tick) — no asset needed */
+.fund-check {
+  position: relative;
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  box-shadow: 0 2px 6px rgb(251 191 36 / 40%);
+}
+.fund-check::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 7px;
+  width: 5px;
+  height: 10px;
+  border: solid var(--color-primary-deep);
+  border-width: 0 2.5px 2.5px 0;
+  transform: rotate(45deg);
+}
+
+/* ----- Donation mechanics (on the purple field) ----- */
+.poster--fund__give {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  margin-top: 26px;
+  animation: fundRise 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) 0.35s both;
+}
+.poster--fund__give-label {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: var(--color-gold);
+  text-transform: uppercase;
+}
+.poster--fund__pills {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  gap: 14px;
+}
+/* Account field = white pill (reads like a copyable number) */
+.fund-account {
+  display: grid;
+  gap: 2px;
+  padding: 10px 22px;
+  border-radius: 14px;
+  background: #ffffff;
+  text-align: center;
+  box-shadow: 0 10px 26px rgb(0 0 0 / 30%);
+  transition: transform 0.3s ease;
+}
+.fund-account__label {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--color-primary);
+  text-transform: uppercase;
+}
+.fund-account__num {
+  font-family: var(--font-display);
+  font-size: 27px;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  color: var(--color-primary-deep);
+  font-variant-numeric: tabular-nums;
+}
+/* The ask = solid gold pill with a gentle pulse glow */
+.fund-amount {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 12px 26px;
+  border-radius: 14px;
+  background: var(--color-gold);
+  color: var(--color-dark);
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  box-shadow: 0 8px 22px rgb(0 0 0 / 30%);
+  animation: fundAmountPulse 2.6s ease-in-out infinite;
+  transition: transform 0.3s ease;
+}
+.fund-amount span {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+.poster--fund__give-note {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  color: rgb(255 255 255 / 72%);
+}
+.poster--fund__proof-label {
+  margin: 8px 0 0;
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: var(--color-gold);
+  text-transform: uppercase;
+}
+.poster--fund__names {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  color: var(--color-white);
+  text-transform: uppercase;
+  text-shadow: 0 2px 10px rgb(0 0 0 / 45%);
+}
+
+/* ----- Scripture (Amharic, centred) ----- */
+.poster--fund__verse {
+  max-width: 840px;
+  margin: 20px 0 0;
+  font-family: var(--font-amharic-date);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.6;
+  color: rgb(255 255 255 / 90%);
+  text-wrap: balance;
+  text-shadow: 0 2px 10px rgb(0 0 0 / 60%);
+  animation: fundRise 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) 0.5s both;
+}
+.poster--fund__verse cite {
+  display: block;
+  margin-top: 8px;
+  font-style: normal;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--color-gold);
+}
+
+/* ----- Footer: locked script-font component, pinned to the foot ----- */
+.poster--fund .footer {
+  align-self: stretch;
+  width: 100%;
+  margin-top: auto;
+  padding-top: 16px;
+  font-family: var(--font-footer);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 10px rgb(0 0 0 / 45%);
+}
+.poster--fund .footer__social {
+  font-family: var(--font-footer);
+  font-weight: 700;
+}
+
+/* ----- Hover micro-interactions (preview only; harmless in export) ----- */
+.poster--fund:hover .fund-card {
+  transform: translateY(-3px);
+  box-shadow: 0 30px 70px rgb(0 0 0 / 50%);
+}
+.poster--fund:hover .fund-amount {
+  transform: scale(1.04);
+}
+.poster--fund:hover .fund-account {
+  transform: translateY(-2px);
+}
+
+/* ----- Motion ----- */
+@keyframes fundRise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes fundAmountPulse {
+  0%,
+  100% {
+    box-shadow:
+      0 8px 22px rgb(0 0 0 / 30%),
+      0 0 0 0 rgb(251 191 36 / 50%);
+  }
+  50% {
+    box-shadow:
+      0 8px 22px rgb(0 0 0 / 30%),
+      0 0 28px 2px rgb(251 191 36 / 55%);
+  }
+}
+@keyframes fundHeartBreathe {
+  0%,
+  100% {
+    opacity: 0.06;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.09;
+    transform: scale(1.04);
+  }
+}
+
+/* =========================================================
+   DOCUMENT-LOCAL EXPORT OVERRIDES (1250 canvas for THIS file).
+   Override the imported theme.css (1080x1350) for this document
+   only; other posters keep 1350.
+   ========================================================= */
+@page {
+  size: 1080px 1250px; /* 1200px or 1350px to change ratio */
+  margin: 0;
+}
+@media (max-width: 1100px) {
+  .poster.poster--fund {
+    margin-bottom: calc(1250px * (100vw / 1080 - 1));
+  }
+}
+@media print {
+  html,
+  body {
+    width: 1080px;
+    height: 1250px;
+  }
+  .poster.poster--fund {
+    width: 1080px;
+    height: 1250px;
+  }
+}
+/* =========================================================
+   POSTER 09 — v2 (scoped to .poster--fund / its components)
+   (1) Centre the white card contents
+   (2) Wire the inline-SVG icons (replaces the masked spans that
+       rendered as an empty white disc)
+   Append AFTER all previous styles9.css rules. Touches nothing global.
+   ========================================================= */
+
+/* (1) Centre the card */
+.fund-card {
+  text-align: center;
+}
+.fund-card__tab {
+  text-align: center;
+}
+.fund-featured {
+  flex-direction: column; /* icon on top, copy below — all centred */
+  align-items: center;
+  text-align: center;
+  border-left: 0; /* the left bar looks wrong on a centred block */
+}
+.fund-featured__ic-wrap {
+  box-shadow:
+    0 0 0 2px var(--color-gold),
+    /* gold ring = the accent the left bar used to be */ 0 4px 12px
+      rgb(0 0 0 / 8%);
+}
+.fund-featured__copy {
+  justify-items: center;
+  text-align: center;
+}
+.fund-row {
+  justify-content: center; /* centre each [check + label] pair */
+}
+
+/* (2) Inline-SVG icon wiring */
+.fund-featured__ic {
+  width: 26px;
+  height: 26px;
+  color: var(--color-primary-deep); /* purple mic on the white disc */
+}
+.poster--fund__tag svg {
+  flex: 0 0 auto; /* keep the megaphone from shrinking */
+}
+.poster--fund__heart {
+  fill: var(--color-gold); /* the heart is now an inline <svg> */
+}
+/* (optional) Photo layer behind the scrim — set your real file name + extension */
+/*.poster--fund__photo {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background: url("../assets/images/campian.jpg") center / cover no-repeat;
+  filter: grayscale(0.25) brightness(0.62); 
+} */
+/* =========================================================
+   POSTER 09 — v3 (scoped to .poster--fund / its components)
+   (1) Checklist fix: bullets on ONE left rail, labels left-aligned,
+       the whole list block centred (kills the diagonal scatter).
+   (2) Heart watermark -> gold cross watermark, made clearly visible.
+   Append AFTER all previous styles9.css rules. Touches nothing global.
+   (The now-unused .poster--fund__heart / @keyframes fundHeartBreathe
+    rules may be deleted later; they are harmless while present.)
+   ========================================================= */
+
+/* (1) The list = a centred, shrink-to-fit column with a single bullet rail.
+       width:max-content makes the block as wide as the longest row;
+       margin-inline:auto centres that block in the card; justify-items:stretch
+       then makes EVERY row that same width, so all bullets land on one x. */
+.fund-programs {
+  width: max-content;
+  margin-inline: auto;
+  gap: 13px; /* a touch airier than 11px */
+  justify-items: stretch;
+  padding: 14px 0 18px; /* side padding dropped so the rail hugs the block edge */
+}
+/* Pack [check + label] to the LEFT inside each (now equal-width) row,
+   overriding the v2 justify-content:center that caused the scatter. */
+.fund-row {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+/* (2) Gold cross watermark — perceptible, but still ambient */
+.poster--fund__cross {
+  position: absolute;
+  z-index: 1;
+  top: 78px;
+  right: -64px;
+  width: 440px;
+  height: 440px;
+  fill: var(--color-gold);
+  opacity: 0.14; /* the heart was 0.06 — this is clearly seen, still soft */
+  pointer-events: none;
+  animation: fundMarkBreathe 7s ease-in-out infinite;
+}
+@keyframes fundMarkBreathe {
+  0%,
+  100% {
+    opacity: 0.14;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.19;
+    transform: scale(1.03);
+  }
+}
+/* =========================================================
+   POSTER 09 — v4 (scoped to .poster--fund / its components)
+   (1) Canvas 1250 -> 1300 (relieve compression)
+   (2) Centre the middle cluster vertically + horizontally,
+       with even spacing between blocks
+   (3) Hairline between the two card pillars
+   Append AFTER all previous styles9.css rules. Touches nothing global.
+   ========================================================= */
+
+/* (1) Canvas bump — later rules override the earlier 1250 values. */
+.poster.poster--fund {
+  height: 1300px;
+}
+@page {
+  size: 1080px 1300px;
+}
+@media (max-width: 1100px) {
+  .poster.poster--fund {
+    margin-bottom: calc(1300px * (100vw / 1080 - 1));
+  }
+}
+@media print {
+  html,
+  body {
+    height: 1300px;
+  }
+  .poster.poster--fund {
+    height: 1300px;
+  }
+}
+
+/* (2) Vertical centring: hero owns the top free space, the verse owns the
+       bottom free space, so the [hero → card → give → verse] cluster floats
+       centred between the pinned header and the pinned footer. The footer's
+       own margin-top is zeroed so it does not steal the bottom gap. */
+.poster--fund__hero {
+  margin-top: auto;
+}
+.poster--fund__verse {
+  margin-bottom: auto;
+}
+.poster--fund .footer {
+  margin-top: 0;
+}
+
+/* (2) Even horizontal rhythm: one consistent gap between every block. */
+.fund-card {
+  margin-top: 30px;
+}
+.poster--fund__give {
+  margin-top: 30px;
+}
+.poster--fund__verse {
+  margin-top: 30px;
+}
+
+/* (3) Clean white hairline between the two gold-soft pillars. */
+.fund-featured--second {
+  border-top: 1px solid rgb(255 255 255 / 65%);
+}
+/*.fund-featured--second {
+  margin-top: 10px;
+  border-radius: 0;
+}
+.fund-featured {
+  border-radius: 14px;
+} */
