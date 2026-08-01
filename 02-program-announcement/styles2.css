@@ -1,127 +1,267 @@
+/* =========================================================
+   POSTER 02 — TIKTOK LIVE PROGRAM
+   High-energy, social-media-first design.
+   ========================================================= */
+
 .poster--program {
   color: var(--color-white);
-  background: var(--color-primary-deep);
+  /* Background is handled by the photo layer */
 }
 
+/* Photo Layer */
 .poster--program__photo {
   position: absolute;
   z-index: 0;
   inset: 0;
   background-image: url("../assets/images/photo_2026-05-27_21-09-35.jpg");
-  background-position: center;
+  background-position: center 30%; /* Focus on the faces */
   background-size: cover;
 }
 
+/* Custom Cinematic Overlay */
+/* Darkens top and bottom to ensure text readability, keeps middle clear */
+.poster--program .image-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(17, 24, 39, 0.85) 0%,
+    rgba(17, 24, 39, 0.3) 35%,
+    rgba(17, 24, 39, 0.2) 60%,
+    rgba(17, 24, 39, 0.95) 100%
+  );
+}
+
+/* Content Container */
 .poster--program__content {
   display: flex;
   flex: 1;
   flex-direction: column;
-  padding: var(--space-7) var(--content-inset) var(--space-6);
+  padding: 60px 76px 50px;
+  position: relative;
+  z-index: 2;
 }
 
+/* ----- Header ----- */
 .poster--program__header {
   display: flex;
-  align-items: flex-start;
   justify-content: space-between;
-  gap: var(--space-4);
+  align-items: flex-start;
+}
+
+.poster--program__header .logo-container img {
+  width: 70px;
+  filter: brightness(0) invert(1); /* White logo */
 }
 
 .poster--program__header .eyebrow {
-  max-width: 270px;
-  padding-top: var(--space-2);
-  font-size: 18px;
-  color: var(--color-gold);
-  text-align: right;
+  font-family: var(--font-handwritten);
+  font-size: 22px;
+  color: var(--color-white);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  margin: 0;
+  padding-top: 12px;
+  opacity: 0.9;
 }
 
+/* ----- Hero Section ----- */
 .poster--program__hero {
-  margin-top: var(--space-7);
+  margin-top: 40px;
+  position: relative;
 }
 
+/* "coming soon..." Script */
 .poster--program__script {
-  margin: 0 0 calc(var(--space-3) * -1) var(--space-3);
+  position: absolute;
+  top: -10px;
+  left: 0;
   color: var(--color-gold);
-  font-size: 46px;
-  line-height: 1;
+  font-family: var(--font-handwritten);
+  font-size: 42px;
   transform: rotate(-6deg);
+  margin: 0;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  z-index: 3;
 }
 
+/* "LIVE PROGRAM" Eyebrow */
+.poster--program__hero > .eyebrow {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  color: var(--color-white);
+  text-transform: uppercase;
+  margin: 0 0 10px 0;
+  display: block;
+}
+
+/* Main Headline: TIKTOK LIVE / PROGRAM */
 .poster--program h1 {
-  margin: var(--space-2) 0 0;
-  font-size: 132px;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 140px;
   font-weight: 900;
+  line-height: 0.9;
   letter-spacing: -0.075em;
-  line-height: 0.78;
+  text-transform: uppercase;
+  color: var(--color-white);
+  /* TikTok Glitch Effect: Subtle Cyan and Magenta shadows */
+  text-shadow:
+    5px 5px 0px rgba(37, 244, 238, 0.4),
+    -5px -5px 0px rgba(254, 44, 85, 0.4);
 }
 
 .poster--program h1 span {
   color: var(--color-gold);
+  display: block; /* Forces "PROGRAM" to the next line */
+  /* Remove glitch from the gold line for clarity */
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
 }
 
+/* Amharic Title */
 .poster--program__amharic {
-  margin: var(--space-4) 0 0;
-  font-size: 46px;
+  margin: 24px 0 0;
+  font-family: var(--font-amharic-date);
+  font-size: 58px;
+  font-weight: 800;
   line-height: 1.1;
+  color: var(--color-white);
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
 }
 
+/* Verse / Intro Text */
 .poster--program__intro {
-  max-width: 620px;
-  margin: var(--space-3) 0 0;
-  color: var(--color-primary-soft);
-  font-size: 24px;
-  font-weight: 500;
-  line-height: 1.42;
+  margin: 24px 0 0;
+  max-width: 680px;
+  font-family: var(--font-amharic-date);
+  font-size: 26px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
+.poster--program__intro .highlight-gold {
+  color: var(--color-gold);
+  font-weight: 800;
+  font-size: 30px;
+  text-shadow: 0 2px 10px rgba(251, 191, 36, 0.3);
+}
+
+.poster--program__intro .verse-reference {
+  display: block;
+  margin-top: 12px;
+  color: var(--color-gold);
+  font-size: 22px;
+  font-weight: 700;
+  font-family: var(--font-sans);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ----- Event Section (Bottom) ----- */
 .poster--program__event {
-  display: grid;
-  grid-template-columns: 224px 1fr;
-  align-items: stretch;
-  gap: var(--space-4);
   margin-top: auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+  padding-bottom: 20px;
 }
 
+/* Date Block */
 .poster--program__date {
   display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-2) var(--space-4) var(--space-2) 0;
-  border-right: 1px solid var(--color-line);
-  color: var(--color-white);
+  align-items: baseline;
+  gap: 16px;
 }
 
 .poster--program__date > span {
-  color: var(--color-gold);
-  font-size: 112px;
+  font-family: var(--font-display);
+  font-size: 120px;
   font-weight: 900;
+  color: var(--color-gold);
+  line-height: 0.8;
   letter-spacing: -0.1em;
-  line-height: 0.75;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
 }
 
 .poster--program__date div {
-  display: grid;
-  gap: var(--space-1);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-bottom: 10px;
 }
 
-.poster--program__date strong,
+.poster--program__date strong {
+  font-family: var(--font-amharic-date);
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--color-white);
+}
+
 .poster--program__date small {
-  font-size: 21px;
-  font-weight: 900;
-  letter-spacing: 0.08em;
-  line-height: 1;
+  font-family: var(--font-amharic-date);
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 600;
 }
 
+/* Details / Badges */
 .poster--program__details {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  align-items: end;
-  gap: var(--space-4);
+  display: flex;
+  gap: 20px;
+  align-items: center;
 }
 
-.poster--program__details .meta-badge {
-  justify-self: start;
+/* Glassmorphism Badges */
+.meta-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 28px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  font-family: var(--font-sans);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-white);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
+.meta-badge img {
+  width: 24px;
+  height: 24px;
+  filter: brightness(0) invert(1); /* Make icons white */
+}
+
+/* ----- Footer ----- */
 .poster--program .footer {
-  margin-top: var(--space-5);
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-sans);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+}
+
+.poster--program .footer__social {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-white);
+}
+
+.poster--program .footer__social img {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) invert(1);
 }
