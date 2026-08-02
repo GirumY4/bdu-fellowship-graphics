@@ -122,20 +122,22 @@
 .poster--program__amharic {
   margin: 24px 0 0;
   font-family: var(--font-amharic-date);
-  font-size: 58px;
+  font-size: 65px; /* original size was 58px */
   font-weight: 800;
   line-height: 1.1;
+  margin-left: 9.5px;
   color: var(--color-white);
   text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
 }
 
 /* Verse / Intro Text */
 .poster--program__intro {
-  margin: 24px 0 0;
+  margin: 18px 0 0;
   max-width: 680px;
   font-family: var(--font-amharic-date);
-  font-size: 26px;
-  line-height: 1.5;
+  font-size: 29px;
+  line-height: 1.2;
+  margin-left: 9.5px;
   color: rgba(255, 255, 255, 0.92);
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
@@ -143,19 +145,28 @@
 .poster--program__intro .highlight-gold {
   color: var(--color-gold);
   font-weight: 800;
-  font-size: 30px;
+  font-size: 33px;
   text-shadow: 0 2px 10px rgba(251, 191, 36, 0.3);
 }
 
 .poster--program__intro .verse-reference {
   display: block;
-  margin-top: 12px;
+
+  margin-top: var(--space-1); /* Space above reference */
+  padding-top: 4px;
   color: var(--color-gold);
   font-size: 22px;
   font-weight: 700;
   font-family: var(--font-sans);
   letter-spacing: 0.05em;
+  line-height: 0.3;
   text-transform: uppercase;
+}
+
+.poster--program__intro.amharic
+  span:not(.highlight-gold):not(.verse-reference) {
+  font-style: italic;
+  color: rgb(255 255 255 / 0.88);
 }
 
 /* ----- Event Section (Bottom) ----- */
