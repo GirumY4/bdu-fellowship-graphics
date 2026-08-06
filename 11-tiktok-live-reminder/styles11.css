@@ -1,0 +1,287 @@
+/* =========================================================
+   POSTER 11 — "TIKTOK LIVE · REMEMBRANCE" (07's skeleton, TikTok skin)
+   All rules scoped to .poster--tiktok.
+   Touches neither theme.css / typography.css nor any other poster.
+   No photos. Near-black ground + cyan/magenta duotone + RGB-split
+   glitch = the TikTok visual language; structure identical to 07.
+   ========================================================= */
+
+.poster--tiktok {
+  color: var(--color-white);
+}
+
+/* Neutralise the global portrait-tuned ambient glows (purple/gold clash
+   with the TikTok palette); recolour the hairline frame to faint cyan. */
+.poster--tiktok::before {
+  background: none;
+  opacity: 0;
+}
+.poster--tiktok::after {
+  border-color: rgb(37 244 238 / 14%);
+}
+
+/* ----- Background: black base + centre spotlight + cyan top-right +
+        magenta bottom-left (the TikTok duotone corners) ----- */
+.poster--tiktok__bg {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background:
+    radial-gradient(
+      42% 32% at 50% 40%,
+      rgb(255 255 255 / 8%) 0%,
+      transparent 72%
+    ),
+    radial-gradient(
+      60% 55% at 88% 8%,
+      rgb(37 244 238 / 22%) 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      55% 50% at 10% 94%,
+      rgb(254 44 85 / 20%) 0%,
+      transparent 72%
+    ),
+    linear-gradient(125deg, #05060a 0%, #0b0d16 50%, #05060a 100%);
+}
+
+/* Chromatic-aberration waves: cyan bottom-left + magenta top-right */
+.poster--tiktok__bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    repeating-radial-gradient(
+      circle at 12% 88%,
+      transparent 0 44px,
+      rgb(37 244 238 / 0.07) 44px 47px,
+      transparent 47px 92px
+    ),
+    repeating-radial-gradient(
+      circle at 88% 10%,
+      transparent 0 44px,
+      rgb(254 44 85 / 0.07) 44px 47px,
+      transparent 47px 92px
+    );
+}
+
+/* ----- Chromatic halftone: two misregistered dot grids (cyan + magenta) ----- */
+.poster--tiktok__pattern {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  opacity: 0.08;
+  background-image:
+    radial-gradient(rgb(37 244 238 / 0.55) 1.5px, transparent 1.6px),
+    radial-gradient(rgb(254 44 85 / 0.55) 1.5px, transparent 1.6px);
+  background-size:
+    28px 28px,
+    28px 28px;
+  background-position:
+    0 0,
+    3px 2px; /* slight offset = misprint / glitch */
+}
+
+/* ----- Edge vignette for contrast ----- */
+.poster--tiktok__vignette {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: radial-gradient(
+    120% 92% at 50% 42%,
+    transparent 52%,
+    rgb(0 0 0 / 45%) 100%
+  );
+}
+
+/* ----- Content column (same rhythm as 07) ----- */
+.poster--tiktok__content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-7) var(--content-inset) var(--space-6);
+}
+
+/* ----- Header: cyan eyebrow + magenta pulse dot left, glitch logo right ----- */
+.poster--tiktok__header {
+  display: flex;
+  align-self: stretch;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+.poster--tiktok__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  color: #25f4ee; /* TikTok cyan */
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+.poster--tiktok__eyebrow::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fe2c55; /* TikTok magenta "on-air" dot */
+  box-shadow: 0 0 0 0 rgb(254 44 85 / 60%);
+  animation: tiktokPulse 1.8s infinite;
+}
+@keyframes tiktokPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgb(254 44 85 / 60%);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgb(254 44 85 / 0%);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgb(254 44 85 / 0%);
+  }
+}
+
+/* Logo: white + RGB-split fringe (the TikTok chromatic glow) */
+.poster--tiktok .logo-container img {
+  width: 70px;
+  filter: brightness(0) invert(1) drop-shadow(2px 0 0 rgb(254 44 85 / 60%))
+    drop-shadow(-2px 0 0 rgb(37 244 238 / 60%));
+}
+
+/* ----- Hero: centred; margin-top:auto = top half of the free space ----- */
+.poster--tiktok__hero {
+  position: relative;
+  width: 100%;
+  margin-top: auto;
+}
+
+/* White headline with the TikTok RGB-split (magenta right / cyan left) */
+.poster--tiktok__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 150px;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  line-height: 0.82;
+  color: var(--color-white);
+  text-transform: uppercase;
+  transform: skewX(-7deg);
+  text-shadow:
+    4px 4px 0 rgb(254 44 85 / 80%),
+    -4px -4px 0 rgb(37 244 238 / 80%),
+    0 10px 30px rgb(0 0 0 / 60%);
+}
+
+/* Magenta sticker with cyan frame, centred on the seam */
+.poster--tiktok__sticker {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 24px;
+  border-radius: 12px;
+  background: linear-gradient(125deg, #fe2c55 0%, #d91b44 100%);
+  border: 2px solid rgb(37 244 238 / 85%);
+  box-shadow:
+    5px 5px 0 rgb(37 244 238 / 45%),
+    0 14px 32px rgb(0 0 0 / 50%),
+    inset 0 1px 0 rgb(255 255 255 / 22%);
+}
+.poster--tiktok__sticker-text {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 66px;
+  font-weight: 900;
+  letter-spacing: 0.01em;
+  color: var(--color-white);
+  text-transform: none;
+  transform: skewX(-9deg);
+  text-shadow:
+    2px 2px 0 rgb(5 6 10 / 55%),
+    0 3px 10px rgb(0 0 0 / 45%);
+}
+
+/* ----- When: RGB-split day + solid cyan time pill ----- */
+.poster--tiktok__when {
+  display: flex;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  margin-top: 64px;
+  margin-bottom: auto;
+}
+.poster--tiktok__day {
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: var(--color-white);
+  text-transform: uppercase;
+  text-shadow:
+    2px 0 0 rgb(254 44 85 / 70%),
+    -2px 0 0 rgb(37 244 238 / 70%),
+    0 2px 10px rgb(0 0 0 / 50%);
+}
+.poster--tiktok__time {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  color: #05060a; /* dark text on the cyan pill */
+  text-transform: uppercase;
+  padding: 12px 28px;
+  border-radius: var(--radius-pill);
+  background: #25f4ee;
+  box-shadow:
+    5px 5px 0 rgb(254 44 85 / 55%),
+    0 10px 26px rgb(0 0 0 / 35%);
+}
+
+/* ----- Footer: locked script component; TikTok handle in cyan ----- */
+.poster--tiktok .footer {
+  align-self: stretch;
+  width: 100%;
+  margin-top: 0;
+  font-family: var(--font-footer);
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-shadow: 0 2px 10px rgb(0 0 0 / 45%);
+}
+.poster--tiktok .footer__social {
+  font-family: var(--font-footer);
+  font-weight: 700;
+  color: #25f4ee; /* cyan handle (replaces the gold/telegram pairing) */
+}
+/* TikTok glyph: white + RGB-split fringe, matching the logo treatment */
+.poster--tiktok .footer__social img {
+  filter: brightness(0) invert(1) drop-shadow(1.5px 0 0 rgb(254 44 85 / 70%))
+    drop-shadow(-1.5px 0 0 rgb(37 244 238 / 70%));
+}
+/* ----- Devotional motto pinned above the footer (Amharic, TikTok-fringed) ----- */
+.poster--tiktok__motto {
+  margin: 0 0 var(--space-4);
+  font-family: var(--font-amharic-date);
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  color: var(--color-white);
+  /* same RGB-split fringe as the day label => stays in the TikTok language */
+  text-shadow:
+    2px 0 0 rgb(254 44 85 / 60%),
+    -2px 0 0 rgb(37 244 238 / 60%),
+    0 2px 10px rgb(0 0 0 / 50%);
+}
