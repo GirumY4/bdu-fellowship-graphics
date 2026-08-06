@@ -1,0 +1,298 @@
+/* =========================================================
+   POSTER 12 — "LIVE TELEGRAM FELLOWSHIP" (01, re-composed centred)
+   All rules scoped to .poster--tlive.
+   Touches neither theme.css / typography.css nor any other poster.
+   Accent split: GOLD = brand/scripture · TELEGRAM-BLUE = action/live.
+   ========================================================= */
+
+.poster--tlive {
+  color: var(--color-white);
+}
+
+/* Neutralise the global portrait-tuned ambient glows; cool hairline frame */
+.poster--tlive::before {
+  background: none;
+  opacity: 0;
+}
+.poster--tlive::after {
+  border-color: rgb(255 255 255 / 12%);
+}
+
+/* ----- Photo (same as 01) ----- */
+.poster--tlive__photo {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background-image: url("../assets/images/fellowship-students.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+/* Telegram "broadcast" rings behind the hero (signal vibe, very faint) */
+.poster--tlive__rings {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background: repeating-radial-gradient(
+    circle at 50% 34%,
+    transparent 0 70px,
+    rgb(42 171 238 / 0.06) 70px 72px,
+    transparent 72px 140px
+  );
+}
+
+/* Blue-tinted cinematic overlay (replaces 01's purple tint) */
+.poster--tlive__overlay {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgb(8 18 38 / 72%) 0%,
+      rgb(8 18 38 / 55%) 35%,
+      rgb(8 14 32 / 82%) 100%
+    ),
+    radial-gradient(
+      100% 80% at 50% 38%,
+      rgb(42 171 238 / 26%) 0%,
+      transparent 62%
+    );
+}
+
+/* ----- Centred content column ----- */
+.poster--tlive__content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-7) var(--content-inset) var(--space-6);
+}
+
+/* Centred logo with Telegram-blue glow */
+.poster--tlive__header {
+  display: flex;
+  justify-content: center;
+}
+.poster--tlive .logo-container img {
+  width: 70px;
+  filter: brightness(0) invert(1) drop-shadow(0 0 2px rgb(42 171 238 / 60%));
+}
+
+/* LIVE pill */
+.poster--tlive__live {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin: var(--space-5) 0 0;
+  padding: 10px 26px;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid rgb(42 171 238 / 55%);
+  background: rgb(42 171 238 / 14%);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.poster--tlive__live-dot {
+  flex: 0 0 auto;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #2aabee;
+  box-shadow: 0 0 0 0 rgb(42 171 238 / 60%);
+  animation: tlivePulse 1.8s infinite;
+}
+@keyframes tlivePulse {
+  0% {
+    box-shadow: 0 0 0 0 rgb(42 171 238 / 60%);
+  }
+  70% {
+    box-shadow: 0 0 0 12px rgb(42 171 238 / 0%);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgb(42 171 238 / 0%);
+  }
+}
+
+/* ----- Centred hero ----- */
+.poster--tlive__hero {
+  position: relative;
+  max-width: 900px;
+  margin-top: var(--space-6);
+}
+.poster--tlive__eyebrow {
+  position: absolute;
+  z-index: 4;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-8deg);
+  margin: 0;
+  font-family: var(--font-handwritten);
+  font-size: 44px;
+  font-weight: 700;
+  color: var(--color-gold);
+  text-transform: none;
+  text-shadow: 0 2px 10px rgb(0 0 0 / 50%);
+}
+.poster--tlive h1 {
+  margin: var(--space-3) 0 0;
+  font-family: var(--font-display);
+  font-size: 130px;
+  font-weight: 900;
+  letter-spacing: -0.06em;
+  line-height: 0.82;
+  text-transform: uppercase;
+  text-shadow: 0 8px 26px rgb(0 0 0 / 50%);
+}
+.poster--tlive h1 span {
+  color: var(--color-gold);
+}
+.poster--tlive__amharic {
+  margin: var(--space-4) 0 0;
+  font-family: var(--font-amharic);
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 1.2;
+  text-shadow: 0 4px 18px rgb(0 0 0 / 60%);
+}
+.poster--tlive__intro {
+  margin: var(--space-3) auto 0;
+  max-width: 700px;
+  font-family: var(--font-amharic-date);
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.55;
+  color: rgb(255 255 255 / 94%);
+  text-wrap: balance;
+}
+.poster--tlive__intro span:not(.highlight-gold):not(.verse-reference) {
+  font-style: italic;
+  color: rgb(255 255 255 / 88%);
+}
+.poster--tlive__intro .highlight-gold {
+  display: inline-block;
+  color: var(--color-gold);
+  font-size: 32px;
+  font-weight: 800;
+  text-shadow: 0 2px 8px rgb(251 191 36 / 40%);
+}
+.poster--tlive__intro .verse-reference {
+  display: block;
+  margin-top: var(--space-2);
+  font-family: var(--font-amharic);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--color-gold);
+}
+
+/* ----- Centred details pinned near the foot ----- */
+.poster--tlive__details {
+  position: relative;
+  width: 100%;
+  margin-top: auto;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-line);
+}
+/* Centred Telegram-blue accent tick on the divider */
+.poster--tlive__details::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  height: 3px;
+  border-radius: 2px;
+  background: #2aabee;
+}
+
+.poster--tlive .meta-row {
+  justify-content: center;
+}
+.poster--tlive .meta-badge {
+  border-color: rgb(42 171 238 / 45%);
+  background: rgb(8 18 38 / 45%);
+  box-shadow:
+    0 10px 30px rgb(0 0 0 / 25%),
+    0 0 18px rgb(42 171 238 / 18%);
+}
+.poster--tlive .meta-badge--amharic .amharic-text {
+  font-family: var(--font-amharic-date);
+  font-size: 24px;
+  font-weight: 700;
+}
+
+/* Join block stacked + centred */
+.poster--tlive__join {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+}
+.poster--tlive__join-copy {
+  max-width: 520px;
+}
+.poster--tlive__join .section-title {
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--color-gold);
+}
+.poster--tlive__join p:not(.section-title) {
+  margin: var(--space-2) 0 0;
+  color: rgb(255 255 255 / 86%);
+  font-size: 20px;
+}
+.poster--tlive .qr-block--glass {
+  border: 1.5px solid rgb(42 171 238 / 50%);
+  background: rgb(8 18 38 / 50%);
+  box-shadow:
+    0 18px 44px rgb(0 0 0 / 30%),
+    0 0 24px rgb(42 171 238 / 22%);
+  transition:
+    box-shadow 0.4s ease,
+    transform 0.4s ease;
+}
+.poster--tlive .qr-block--glass:hover {
+  transform: translateY(-3px);
+  box-shadow:
+    0 24px 54px rgb(0 0 0 / 36%),
+    0 0 34px rgb(42 171 238 / 34%);
+}
+.poster--tlive .qr-block__copy strong {
+  color: #2aabee;
+  font-size: 26px;
+  font-weight: 900;
+}
+.poster--tlive .qr-block__copy span {
+  color: rgb(255 255 255 / 85%);
+  font-size: 17px;
+}
+.pointer-icon {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  padding-top: 4px;
+  vertical-align: middle;
+}
+
+/* ----- Locked footer; handle in Telegram blue ----- */
+.poster--tlive .footer {
+  align-self: stretch;
+  width: 100%;
+  margin-top: var(--space-5);
+  font-family: var(--font-footer);
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+.poster--tlive .footer__social {
+  font-family: var(--font-footer);
+  color: #2aabee;
+}
