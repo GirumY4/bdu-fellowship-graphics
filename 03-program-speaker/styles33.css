@@ -1,0 +1,263 @@
+/* =========================================================
+   POSTER 03 — PROGRAM SPEAKER · Telegram-live, centred,
+   ringed circular portraits, centred logo.
+   Consolidated single pass (base + v2–v6). All rules scoped
+   to .poster--speaker. Touches nothing global.
+   Accent split: GOLD = hero + cards · TELEGRAM-BLUE = ambience + interactive.
+   ========================================================= */
+
+.poster--speaker {
+  color: var(--color-white);
+  background: var(--color-primary-deep);
+}
+
+/* Clean Telegram field: drop global purple/gold ambient; cool hairline frame */
+.poster--speaker::before {
+  background: none;
+  opacity: 0;
+}
+.poster--speaker::after {
+  border-color: rgb(255 255 255 / 12%);
+}
+
+/* ----- Photo + faint Telegram broadcast rings ----- */
+.poster--speaker__photo {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background-image: url("../assets/images/photo_2026-05-27_21-09-33.jpg");
+  background-position: 60% center;
+  background-size: cover;
+  filter: grayscale(0.3) brightness(0.82);
+}
+.poster--speaker__photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-radial-gradient(
+    circle at 50% 30%,
+    transparent 0 70px,
+    rgb(42 171 238 / 0.06) 70px 72px,
+    transparent 72px 140px
+  );
+}
+
+/* ----- Blue-tinted cinematic overlay ----- */
+.poster--speaker .image-overlay--primary {
+  background:
+    linear-gradient(
+      180deg,
+      rgb(8 18 38 / 62%) 0%,
+      rgb(8 18 38 / 34%) 30%,
+      rgb(8 14 32 / 93%) 100%
+    ),
+    radial-gradient(
+      100% 70% at 50% 38%,
+      rgb(42 171 238 / 26%) 0%,
+      transparent 62%
+    );
+}
+
+/* ----- Content column ----- */
+.poster--speaker__content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: var(--space-7) var(--content-inset) var(--space-6);
+}
+
+/* ----- Centred logo header ----- */
+.poster--speaker__header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.poster--speaker .logo-container img {
+  width: 70px;
+  filter: brightness(0) invert(1) drop-shadow(0 0 2px rgb(42 171 238 / 60%));
+}
+
+/* ----- Centred hero ----- */
+.poster--speaker__hero {
+  position: relative;
+  margin-top: auto;
+  text-align: center;
+}
+.poster--speaker__eyebrow.handwritten {
+  display: block;
+  margin: 0 0 -18px 0;
+  font-family: var(--font-handwritten);
+  font-size: 48px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--color-gold);
+  text-transform: none;
+  transform: rotate(-8deg);
+  text-shadow: 0 2px 10px rgb(0 0 0 / 45%);
+}
+.poster--speaker h1 {
+  margin: var(--space-2) 0 0;
+  font-family: var(--font-display);
+  font-size: 102px;
+  font-weight: 900;
+  letter-spacing: -0.075em;
+  line-height: 0.8;
+  text-shadow: 0 3px 12px rgb(0 0 0 / 55%);
+}
+.poster--speaker h1 span {
+  color: var(--color-gold);
+}
+.poster--speaker__amharic {
+  margin: var(--space-3) 0 0;
+  font-size: 55px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  color: var(--color-white);
+  text-shadow: 0 3px 12px rgb(0 0 0 / 55%);
+}
+
+/* ----- Ringed circular speaker cards (centred) ----- */
+.poster--speaker .speaker-grid {
+  margin-top: 44px;
+}
+.poster--speaker .speaker-card {
+  text-align: center;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+}
+.poster--speaker .speaker-card__portrait {
+  align-self: center;
+  width: 250px;
+  height: 250px;
+  min-height: 0;
+  margin: 0;
+  border: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(
+    160deg,
+    var(--color-primary-deep),
+    var(--color-primary)
+  );
+  box-shadow:
+    0 0 0 3px rgb(251 191 36 / 70%),
+    0 14px 34px rgb(0 0 0 / 40%);
+}
+.poster--speaker .speaker-card__portrait img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 22%;
+  filter: none;
+  opacity: 1;
+}
+.poster--speaker .speaker-card__portrait img.speaker-portrait-placeholder {
+  position: static;
+  inset: auto;
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+  opacity: 0.5;
+}
+.poster--speaker .speaker-card__body {
+  align-self: stretch;
+  width: 100%;
+  background: transparent;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  padding: var(--space-3) var(--space-2) 0;
+}
+.poster--speaker .speaker-card__role {
+  margin: 0 0 6px;
+  font-family: var(--font-amharic-date);
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.25;
+  color: var(--color-gold);
+  text-shadow: 0 1px 6px rgb(0 0 0 / 55%);
+}
+.poster--speaker .speaker-card__name {
+  margin-top: 0;
+  font-size: 35px;
+  font-weight: 800;
+  line-height: 1.16;
+  letter-spacing: 0.01em;
+  color: var(--color-white);
+  text-shadow: 0 2px 8px rgb(0 0 0 / 55%);
+}
+
+/* ----- Centred time badge, Telegram blue ----- */
+.poster--speaker__time {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  align-self: center;
+  width: max-content;
+  max-width: none;
+  white-space: nowrap;
+  margin-top: 44px;
+  margin-bottom: auto;
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid rgb(42 171 238 / 45%);
+  border-radius: var(--radius-pill);
+  background: rgb(8 18 38 / 62%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  backdrop-filter: blur(14px) saturate(140%);
+  box-shadow:
+    0 12px 30px rgb(0 0 0 / 32%),
+    0 0 18px rgb(42 171 238 / 20%);
+  font-size: 18px;
+}
+.poster--speaker__time .amharic-text {
+  font-family: var(--font-amharic-date);
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.poster--speaker__time > img {
+  flex: 0 0 auto;
+}
+.poster--speaker__time .badge-social {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+.poster--speaker__time .badge-social img {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+}
+.poster--speaker__time .badge-social__handle {
+  font-family: var(--font-sans);
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #2aabee;
+}
+
+/* ----- Locked footer; handle in Telegram blue ----- */
+.poster--speaker .footer {
+  margin-top: 0;
+  font-family: var(--font-footer);
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+.poster--speaker .footer__social {
+  font-family: var(--font-footer);
+  color: #2aabee;
+}

@@ -1,0 +1,149 @@
+/* =========================================================
+   POSTER 13 — VLOG · "የዘሪዉ ዘር" (the sower's seed)
+   Minimal earth-night card: seed -> sprout -> soil SVG motif.
+   All rules scoped to .poster--seed. Touches nothing global.
+   Palette: deep earth-green + emerald (growth) + gold (seed/brand).
+   ========================================================= */
+
+.poster--seed {
+  color: var(--color-white);
+  background: #0a140d;
+}
+
+/* Clean field: drop global ambient; soft hairline frame */
+.poster--seed::before {
+  background: none;
+  opacity: 0;
+}
+.poster--seed::after {
+  border-color: rgb(255 255 255 / 12%);
+}
+
+/* ----- Backdrop: warm glow behind title + growth glow at the soil ----- */
+.poster--seed__bg {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background:
+    radial-gradient(
+      50% 36% at 50% 44%,
+      rgb(251 191 36 / 10%) 0%,
+      transparent 70%
+    ),
+    radial-gradient(
+      72% 46% at 50% 97%,
+      rgb(34 197 94 / 14%) 0%,
+      transparent 72%
+    ),
+    linear-gradient(180deg, #0c1710 0%, #0a140d 55%, #071009 100%);
+}
+
+/* ----- The SVG motif layer ----- */
+.poster--seed__motif {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ----- Edge vignette for focus ----- */
+.poster--seed__vignette {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: radial-gradient(
+    120% 92% at 50% 44%,
+    transparent 56%,
+    rgb(0 0 0 / 40%) 100%
+  );
+}
+
+/* ----- Content: logo top, title centred ----- */
+.poster--seed__content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex: 1;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 76px 70px 0;
+}
+.poster--seed__header {
+  display: flex;
+  justify-content: center;
+}
+.poster--seed .logo-container img {
+  width: 64px;
+  filter: brightness(0) invert(1) drop-shadow(0 0 6px rgb(251 191 36 / 50%));
+}
+
+/* ----- Big title, vertically centred ----- */
+.poster--seed__title {
+  margin: auto 0;
+  font-family: var(--font-amharic-hero);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+}
+.poster--seed__line1 {
+  display: block;
+  font-size: 150px;
+  color: var(--color-white);
+  text-shadow: 0 4px 20px rgb(0 0 0 / 60%);
+}
+.poster--seed__line2 {
+  display: block;
+  font-size: 200px;
+  color: var(--color-gold);
+  text-shadow:
+    0 2px 0 rgb(146 84 0 / 50%),
+    0 8px 30px rgb(0 0 0 / 60%),
+    0 0 34px rgb(251 191 36 / 25%);
+  animation: seedGlow 5s ease-in-out infinite;
+}
+@keyframes seedGlow {
+  0%,
+  100% {
+    text-shadow:
+      0 2px 0 rgb(146 84 0 / 50%),
+      0 8px 30px rgb(0 0 0 / 60%),
+      0 0 26px rgb(251 191 36 / 20%);
+  }
+  50% {
+    text-shadow:
+      0 2px 0 rgb(146 84 0 / 50%),
+      0 8px 30px rgb(0 0 0 / 60%),
+      0 0 44px rgb(251 191 36 / 40%);
+  }
+}
+
+/* =========================================================
+   DOCUMENT-LOCAL EXPORT OVERRIDES (1000 canvas for THIS file)
+   ========================================================= */
+.poster.poster--seed {
+  width: 1080px;
+  height: 1000px;
+}
+@page {
+  size: 1080px 1000px;
+  margin: 0;
+}
+@media (max-width: 1100px) {
+  .poster.poster--seed {
+    margin-bottom: calc(1000px * (100vw / 1080 - 1));
+  }
+}
+@media print {
+  html,
+  body {
+    width: 1080px;
+    height: 1000px;
+  }
+  .poster.poster--seed {
+    width: 1080px;
+    height: 1000px;
+  }
+}
