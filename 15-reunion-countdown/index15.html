@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="BDU Fellowship reunion countdown" />
+    <title>BDU Fellowship — Reunion Countdown</title>
+    <link rel="stylesheet" href="../assets/theme.css?v=20260723-b" />
+    <link rel="stylesheet" href="./styles15.css?v=20260804-a" />
+  </head>
+  <body>
+    <!-- SWITCH: is-3 (calm) / is-2 (rising) / is-1 (alert) -->
+    <main class="poster poster--count is-1" aria-label="Reunion countdown">
+      <div class="poster--count__bg" aria-hidden="true"></div>
+      <div class="poster--count__stripes" aria-hidden="true"></div>
+      <div class="poster--count__vignette" aria-hidden="true"></div>
+
+      <div class="poster__content poster--count__content">
+        <header class="poster--count__header">
+          <p class="poster--count__eyebrow">BDU Fellowship · Reunion</p>
+          <div class="logo-container">
+            <img
+              src="../assets/logo/vlm-logo.svg"
+              alt="VLM BDU Fellowship logo"
+            />
+          </div>
+        </header>
+
+        <!-- SWAPPABLE alert tag -->
+        <p class="poster--count__tag">
+          <span class="poster--count__tag-dot" aria-hidden="true"></span>Final
+          day — don't miss it
+        </p>
+
+        <!-- Countdown dial: depleting timer ring + giant number -->
+        <div class="poster--count__dial">
+          <svg
+            class="poster--count__ring"
+            viewBox="0 0 400 400"
+            aria-hidden="true"
+          >
+            <circle class="ring__track" cx="200" cy="200" r="170" />
+            <circle
+              class="ring__ticks"
+              cx="200"
+              cy="200"
+              r="170"
+              pathLength="100"
+            />
+            <circle
+              class="ring__progress"
+              cx="200"
+              cy="200"
+              r="170"
+              pathLength="100"
+            />
+          </svg>
+          <strong class="poster--count__num">1</strong>
+          <span class="poster--count__left">Day Left</span>
+        </div>
+
+        <section class="poster--count__info">
+          <p class="poster--count__date">
+            Aug 30 · Sunday · <span class="amharic">ነሐሴ 24</span>
+          </p>
+          <p class="poster--count__venue">Mexico Emanuel Church · 8:00</p>
+        </section>
+
+        <p class="poster--count__handle">@bdu_fellowship</p>
+      </div>
+    </main>
+  </body>
+</html>
